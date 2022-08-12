@@ -1,0 +1,30 @@
+html,body {
+    font-family: 'Raleway', sans-serif;
+    padding: 3em 2em;
+    font-size: 18px;
+    background: #222;
+    color: #aaa
+  }
+  logo {
+    size: 20px;
+    width: 20;
+  }
+  h3 { 
+    align-content: top;
+    align-items: center;
+  }
+  h1,h2 {
+    font-weight: 200;
+    margin: 0.4em 0;
+  }
+  h1 { font-size: 3.5em; }
+  h2 {
+    align-content:center;
+    color: #888;
+    font-size: 2em;
+  }
+button {
+  color:whitesmoke;
+  background-color: #222;
+  border: #222;
+  }
