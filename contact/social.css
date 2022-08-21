@@ -1,0 +1,31 @@
+html,body {
+    font-family: 'Raleway', sans-serif;
+    padding: 3em 2em;
+    font-size: 18px;
+    background: #222;
+    color: #aaa
+  }
+
+  .social-media{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color:antiquewhite;
+    font-size:1.2rem;
+  }
+  .social-media a {
+    margin: 10px;
+    align-items: center;
+    font-size: 2rem;
+    text-align:center;
+    display: inline-block;
+	  color: #fff;
+}
+.social-media a i{
+	cursor: pointer;
+}
+.social-media  a:hover {
+	color: #00a9e2;
+	text-shadow: 0 0 50px #00a9e2;
+}
