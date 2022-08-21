@@ -5,26 +5,27 @@ html,body {
     background: #222;
     color: #aaa
   }
-  logo {
-    size: 20px;
-    width: 20;
-  }
-  h3 { 
-    align-content: top;
+
+  .social-media{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    color:antiquewhite;
+    font-size:1.2rem;
   }
-  h1,h2 {
-    font-weight: 200;
-    margin: 0.4em 0;
-  }
-  h1 { font-size: 3.5em; }
-  h2 {
-    align-content:center;
-    color: #888;
-    font-size: 2em;
-  }
-button {
-  color:whitesmoke;
-  background-color: #222;
-  border: #222;
-  }
+  .social-media a {
+    margin: 10px;
+    align-items: center;
+    font-size: 2rem;
+    text-align:center;
+    display: inline-block;
+	  color: #fff;
+}
+.social-media a i{
+	cursor: pointer;
+}
+.social-media  a:hover {
+	color: #00a9e2;
+	text-shadow: 0 0 50px #00a9e2;
+}
