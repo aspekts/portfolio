@@ -5,3 +5,7 @@
     max-age=63072000;
     includeSubDomains;
     preload'''
+[[redirects]]
+  from = "/arc-sw.js"
+  to = "https://arc.io/arc-sw.js"
+  status = 200
