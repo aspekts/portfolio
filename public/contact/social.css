@@ -1,85 +1,117 @@
 html,body {
-    font-family: 'Raleway', sans-serif;
-    padding: 3em 2em;
-    font-size: 18px;
-    background: #222;
-    color: #aaa
-  }
+  font-family: 'Raleway', sans-serif;
+  padding: 3em 2em;
+  font-size: 18px;
+  background: #222;
+  color: #aaa
+}
 
-  .social-media{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color:antiquewhite;
-    font-size:1.2rem;
-  }
-  .social-media a {
-    margin: 10px;
-    align-items: center;
-    font-size: 2rem;
-    text-align:center;
-    display: inline-block;
-    position: relative;
-    color: #0087ca;
+.social-media{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color:antiquewhite;
+  font-size:1.2rem;
+}
+.social-media a {
+  margin: 10px;
+  align-items: center;
+  font-size: 2rem;
+  text-align:center;
+  display: inline-block;
+  position: relative;
+  color: #0087ca;
 }
 .social-media a i{
-	cursor: pointer;
+cursor: pointer;
 }
 .social-media  a:hover {
-	color: #00a9e2;
-  text-decoration: underline;
+color: #00a9e2;
+text-decoration: underline;
 }
 .social-media a:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: 
+content: '';
+position: absolute;
+width: 100%;
+transform: scaleX(0);
+height: 2px;
+bottom: 0;
+left: 0;
+background-color: 
 #0087ca;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+transform-origin: bottom right;
+transition: transform 0.25s ease-out;
 }
 .social-media a:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+transform: scaleX(1);
+transform-origin: bottom left;
 }
 .contact {
-    justify-content: space-between;
-    color:antiquewhite;
-    font-size:1.2rem;
+  justify-content: space-between;
+  color:antiquewhite;
+  font-size:1.2rem;
 }
 .contact a {
-    align-items: center;
-    text-align:center;
-    display: inline-block;
-    position: relative;
-    color: #d82b2b;
+  align-items: center;
+  text-align:center;
+  display: inline-block;
+  position: relative;
+  color: #d82b2b;
 }
 .contact a i{
-  cursor: pointer;
+cursor: pointer;
 }
 .contact  a:hover {
-  color: #7ccee9;
-  text-decoration: none;
+color: #7ccee9;
+text-decoration: none;
 }
 .contact a:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color:#0087ca;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+content: '';
+position: absolute;
+width: 100%;
+transform: scaleX(0);
+height: 2px;
+bottom: 0;
+left: 0;
+background-color:#0087ca;
+transform-origin: bottom right;
+transition: transform 0.25s ease-out;
 }
 
 .contact a:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+transform: scaleX(1);
+transform-origin: bottom left;
+}
+#navbarcontact {
+justify-content: space-between;
+color:antiquewhite;
+}
+#navbarcontact a {
+align-items: center;
+text-align:center;
+display: inline-block;
+position: relative;
+color: #d82b2b;
+}
+#navbarcontact  a:hover {
+color: #7ccee9;
+text-decoration: none;
+}
+#navbarcontact a:after {
+content: '';
+position: absolute;
+width: 100%;
+transform: scaleX(0);
+height: 2px;
+bottom: 0;
+left: 0;
+background-color:#0087ca;
+transform-origin: bottom right;
+transition: transform 0.25s ease-out;
+}
+
+#navbarcontact a:hover:after {
+transform: scaleX(1);
+transform-origin: bottom left;
 }
