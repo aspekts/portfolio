@@ -23,6 +23,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Marcus Kamuntu - Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="https://aspekts.dev/img/favicon.ico">
@@ -62,11 +63,36 @@
 </h1>
 <h2>Marcus Kamuntu is a Backend Developer who has gained over 500,000 users on all projects combined. </h2>
 <p align="center">
-<a href="https://discord.com/users/294870523438170112">
-  <img src="https://lanyard-profile-readme.vercel.app/api/294870523438170112?idleMessage=AFK/Idling" alt="status"/>
-</a>
+  <div class="widget">
+    <div class="header">
+      <h3>Current Activity
+      </h3>
+    </div>
+    <div class="presences">
+      <div class="presence vscode">
+        <span class="icon">
+          <i class="fas fa-code"></i>
+        </span>
+        <div class="details">
+          <h4>Visual Studio Code</h4>
+          <p class="status"></p>
+        </div>
+      </div>
+      <div class="presence spotify">
+        <span class="icon">
+          <i class="fab fa-spotify"></i>
+        </span>
+        <div class="details">
+          <h4>Spotify</h4>
+          <p class="status"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </p>
 </div>
+    
+
 </body>
 <script>
   $(window).on('load', function () {

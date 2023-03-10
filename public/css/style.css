@@ -37,3 +37,89 @@ transition: transform 0.25s ease-out;
 transform: scaleX(1);
 transform-origin: bottom left;
 }
+/* Variables */
+:root {
+  --bg-color: #1f1f1f;
+  --fg-color: #f8f8f8;
+  --accent-color: #1db954;
+}
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Widget styles */
+.widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+}
+
+.widget .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.widget .header h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.widget .presences {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.widget .presence {
+  display: flex;
+  align-items: center;
+  background-color: var(--fg-color);
+  color: var(--bg-color);
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.widget .presence .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.widget .presence .icon i {
+  font-size: 20px;
+}
+
+.widget .presence .details {
+  flex: 1;
+}
+
+.widget .presence h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.widget .presence .status {
+  font-size: 14px;
+}

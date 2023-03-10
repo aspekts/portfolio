@@ -54,3 +54,46 @@ var TxtRotate = function(el, toRotate, period) {
     css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
     document.body.appendChild(css);
   };
+  //lanyard data
+  const userId = "294870523438170112";
+const lanyardUrl = `https://api.lanyard.rest/v1/users/${userId}`;
+
+fetch(lanyardUrl)
+  .then(response => response.json())
+  .then(presence => {
+    if (presence.success) {
+      if (presence.data.listening_to_spotify) {
+        const songName = presence.data.spotify.song || "Unknown Song";
+        const artistName = presence.data.spotify.artist || "Unknown Artist";
+        const albumName = presence.data.spotify.album || "Unknown Album";
+
+        const spotifyPresence = document.querySelector(".presence.spotify");
+        spotifyPresence.querySelector(".status").textContent = `${songName} by ${artistName} from the album ${albumName}`;
+        spotifyPresence.style.display = "flex";
+      } 
+      else {
+        const spotifyPresence = document.querySelector(".presence.spotify");
+        spotifyPresence.style.display = "none";
+      }
+      if (presence.data.activities?.length > 0) {
+        presence.data.activities.forEach(activity => {
+          if (activity.type === 0 && activity.application_id === "383226320970055681") {
+            const vscodePresence = document.querySelector(".presence.vscode");
+            vscodePresence.querySelector(".status").textContent = `${ activity.state ? `${activity.state} -` : ""} ${activity.details}`;
+            vscodePresence.style.display = "flex";
+          }
+        });
+      }
+      else {
+        const vscodePresence = document.querySelector(".presence.vscode");
+        vscodePresence.style.display = "none";
+      }
+      if (!presence.data.listening_to_spotify && !(presence.data.activities?.length > 0)) {
+        const widget = document.querySelector(".widget");
+        widget.style.display = "none";
+      }
+    } else {
+      console.error(`Error fetching presence data: ${presence.message}`);
+    }
+  })
+  .catch(error => console.error(`Error fetching presence data: ${error}`));
