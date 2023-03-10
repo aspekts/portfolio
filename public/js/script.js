@@ -68,7 +68,7 @@ fetch(lanyardUrl)
         const albumName = presence.data.spotify.album || "Unknown Album";
 
         const spotifyPresence = document.querySelector(".presence.spotify");
-        spotifyPresence.querySelector(".status").textContent = `${songName} by ${artistName} from the album ${albumName}`;
+        spotifyPresence.querySelector(".status").textContent = `🎶 - ${songName}\n🎤 - ${artistName}\n💽 - ${albumName}`;
         spotifyPresence.style.display = "flex";
       } 
       else {
