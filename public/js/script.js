@@ -68,8 +68,7 @@ fetch(lanyardUrl)
         const albumName = presence.data.spotify.album || "Unknown Album";
 
         const spotifyPresence = document.querySelector(".presence.spotify");
-        spotifyPresence.setAttribute('style', 'white-space: pre;');
-        spotifyPresence.querySelector(".status").textContent = `🎶 - ${songName}\r\n🎤 - ${artistName}\r\n💽 - ${albumName}`;
+        spotifyPresence.querySelector(".status").innerHTML = `🎶 · ${songName}<br />🎤 · ${artistName}<br />💽 · ${albumName}`;
         spotifyPresence.style.display = "flex";
       } 
       else {
@@ -80,7 +79,7 @@ fetch(lanyardUrl)
         presence.data.activities.forEach(activity => {
           if (activity.type === 0 && activity.application_id === "383226320970055681") {
             const vscodePresence = document.querySelector(".presence.vscode");
-            vscodePresence.querySelector(".status").textContent = `${ activity.state ? `${activity.state} -` : ""} ${activity.details}`;
+            vscodePresence.querySelector(".status").innerHTML = `${ activity.state ? `${activity.state} <br />` : ""} ${activity.details}`;
             vscodePresence.style.display = "flex";
           }
         });
