@@ -53,7 +53,6 @@ transform-origin: bottom left;
 
 /* Widget styles */
 .widget {
-  position: fixed;
   bottom: 20px;
   right: 20px;
   display: flex;
