@@ -55,32 +55,66 @@ var TxtRotate = function(el, toRotate, period) {
     document.body.appendChild(css);
   };
   //lanyard data
-  const userId = "294870523438170112";
-const lanyardUrl = `https://api.lanyard.rest/v1/users/${userId}`;
+  const id = "294870523438170112";
+const lanyardUrl = `https://api.lanyard.rest/v1/users/${id}`;
+const Op = {
+  Event: 0,
+  Hello: 1,
+  Initalize: 2,
+  Heartbeat: 3,
+};
 
-fetch(lanyardUrl)
-  .then(response => response.json())
-  .then(presence => {
-    if (presence.success) {
-      if (presence.data.listening_to_spotify) {
-        const songName = presence.data.spotify.song || "Unknown Song";
-        const artistName = presence.data.spotify.artist || "Unknown Artist";
-        const albumName = presence.data.spotify.album || "Unknown Album";
+const Event = {
+  InitState: 'INIT_STATE',
+  PresenceUpdate: 'PRESENCE_UPDATE',
+};
 
+let lanyardHeartbeat;
+let spotifyInterval;
+
+function msToMinutesAndSeconds(ms) {
+  let minutes = Math.floor(ms / 60000);
+  let seconds = Number(((ms % 60000) / 1000).toFixed(0));
+  return seconds == 60
+    ? minutes + 1 + ":00"
+    : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+function presenceUpdate(presence) {
+  console.log(presence);
+    if (presence) {
+      if (presence.listening_to_spotify) {
+        const songURL = `https://open.spotify.com/track/${presence.spotify.track_id}`
+        const songName = presence.spotify.song || "Unknown Song";
+        const artistName = presence.spotify.artist || "Unknown Artist";
+        const albumName = presence.spotify.album || "Unknown Album";       
         const spotifyPresence = document.querySelector(".presence.spotify");
-        spotifyPresence.querySelector(".status").innerHTML = `🎶 · ${songName}<br />🎤 · ${artistName}<br />💽 · ${albumName}`;
+        spotifyPresence.querySelector(".status").innerHTML = `<a href="${songURL}">🎶 · ${songName}<br />🎤 · ${artistName}<br />💽 · ${albumName}</a>`;
         spotifyPresence.style.display = "flex";
+        function updateTimestamp() {
+        spotifyPresence.querySelector(".duration").innerText = `${msToMinutesAndSeconds(
+          new Date().getTime() - presence.spotify.timestamps.start,
+        )} - ${msToMinutesAndSeconds(presence.spotify.timestamps.end - presence.spotify.timestamps.start)}`;
+      }
+
+      clearInterval(spotifyInterval);
+      spotifyInterval = setInterval(() => updateTimestamp(), 800);
+      updateTimestamp();
+ 
       } 
       else {
         const spotifyPresence = document.querySelector(".presence.spotify");
         spotifyPresence.style.display = "none";
       }
-      if (presence.data.activities?.length > 0) {
-        presence.data.activities.forEach(activity => {
+      if (presence.activities?.length > 0) {
+        presence.activities.forEach(activity => {
           if (activity.type === 0 && activity.application_id === "383226320970055681") {
             const vscodePresence = document.querySelector(".presence.vscode");
             vscodePresence.querySelector(".status").innerHTML = `${ activity.state ? `${activity.state} <br />` : ""} ${activity.details}`;
             vscodePresence.style.display = "flex";
+          }
+          else {
+            const vscodePresence = document.querySelector(".presence.vscode");
+            vscodePresence.style.display = "none";
           }
         });
       }
@@ -88,12 +122,59 @@ fetch(lanyardUrl)
         const vscodePresence = document.querySelector(".presence.vscode");
         vscodePresence.style.display = "none";
       }
-      if (!presence.data.listening_to_spotify && !(presence.data.activities?.length > 0)) {
+      if (!presence.listening_to_spotify && !(presence.activities?.length > 0)) {
         const widget = document.querySelector(".widget");
         widget.style.display = "none";
       }
     } else {
       console.error(`Error fetching presence data: ${presence.message}`);
     }
-  })
-  .catch(error => console.error(`Error fetching presence data: ${error}`));
+  }
+  function connect() {
+    const socket = new WebSocket('wss://api.lanyard.rest/socket');
+
+    function send(op, d) {
+      if (socket.readyState != socket.OPEN) return;
+      return socket.send(JSON.stringify({ op, d }));
+    }
+
+    socket.onopen = () => {
+      console.log('Connected to socket');
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      switch (data.op) {
+        case Op.Hello: {
+          console.log('Got hello op');
+
+          lanyardHeartbeat = setInterval(() => send(Op.Heartbeat), data.d.heartbeat_interval);
+
+          send(Op.Initalize, { subscribe_to_id: id || '156114103033790464' });
+
+          break;
+        }
+        case Op.Event: {
+          switch (data.t) {
+            case Event.InitState:
+            case Event.PresenceUpdate: {
+              presenceUpdate(data.d);
+              break;
+            }
+          }
+
+          break;
+        }
+      }
+    };
+
+    socket.onclose = (event) => {
+      clearInterval(lanyardHeartbeat);
+      clearInterval(spotifyInterval);
+
+      console.log('Socket closed', event.reason, event.code);
+      connect();
+    };
+  }
+  connect();

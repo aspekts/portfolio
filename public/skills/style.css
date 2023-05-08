@@ -1,0 +1,294 @@
+html,body {
+  font-family: 'Raleway', sans-serif;
+  padding: 3em 2em;
+  font-size: 18px;
+  background: #222;
+  color: #aaa
+}
+#navbarcontact {
+  justify-content: space-between;
+  color:antiquewhite;
+}
+#navbarcontact a {
+  align-items: center;
+  text-align:center;
+  display: inline-block;
+  position: relative;
+  color: #d82b2b;
+}
+#navbarcontact  a:hover {
+color: #7ccee9;
+text-decoration: none;
+}
+#navbarcontact a:after {
+content: '';
+position: absolute;
+width: 100%;
+transform: scaleX(0);
+height: 2px;
+bottom: 0;
+left: 0;
+background-color:#ffffff;
+transform-origin: bottom right;
+transition: transform 0.25s ease-out;
+}
+
+#navbarcontact a:hover:after {
+transform: scaleX(1);
+transform-origin: bottom left;
+}
+/* Variables */
+:root {
+  --bg-color: #1f1f1f;
+  --fg-color: #f8f8f8;
+  --accent-color: #1db954;
+}
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Widget styles */
+.widget {
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+}
+
+.widget .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.widget .header h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.widget .presences {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.widget .presence {
+  display: flex;
+  align-items: center;
+  background-color: var(--fg-color);
+  color: var(--bg-color);
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.widget .presence .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.widget .presence .icon i {
+  font-size: 20px;
+}
+
+.widget .presence .details {
+  flex: 1;
+}
+
+.widget .presence h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.widget .presence .status {
+  font-size: 14px;
+}
+
+
+.horizontal-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+  }
+
+  .skill-logo {
+    height: 50px;
+    margin-bottom: 10px;
+    width: 50px;
+  }
+
+  .skill-bar {
+    background-color: #ddd;
+    height: 10px;
+    position: relative;
+    width: 150px;
+  }
+
+  .skill-level {
+    background-color: #007bff;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: width 1s ease-in-out;
+  }
+
+  .skill-item {
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 767px) {
+    .horizontal-skills-list {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .skill-item {
+      margin: 20px 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .skill-bar {
+      height: 10px;
+    }
+
+    .skill-level {
+      height: 100%;
+    }
+  }
+
+  .skill-level-80 {
+    animation: skill-level-80 1s ease-in-out forwards;
+  }
+
+  .skill-level-70 {
+    animation: skill-level-70 1s ease-in-out forwards;
+  }
+
+  .skill-level-90 {
+    animation: skill-level-90 1s ease-in-out forwards;
+  }
+
+  .skill-level-60 {
+    animation: skill-level-60 1s ease-in-out forwards;
+  }
+
+  .skill-level-75 {
+    animation: skill-level-75 1s ease-in-out forwards;
+  }
+
+  .skill-level-85 {
+    animation: skill-level-85 1s ease-in-out forwards;
+  }
+
+  .skill-level-65 {
+    animation: skill-level-65 1s ease-in-out forwards;
+  }
+  .skill-level-50 {
+    animation: skill-level-50 1s ease-in-out forwards;
+  }
+  .skill-level-40 {
+    animation: skill-level-40 1s ease-in-out forwards;
+  }
+  .skill-level-30 {
+    animation: skill-level-30 1s ease-in-out forwards;
+  }
+  .skill-level-20 {
+    animation: skill-level-20 1s ease-in-out forwards;
+  }
+  .skill-level-10 {
+    animation: skill-level-10 1s ease-in-out forwards;
+  }
+  .skill-level-5 {
+    animation: skill-level-5 1s ease-in-out forwards;
+  }
+
+  @keyframes skill-level-80 {
+    0% { width: 0; }
+    100% { width: 80%; }
+  }
+
+  @keyframes skill-level-70 {
+    0% { width: 0; }
+    100% { width: 70%; }
+  }
+
+  @keyframes skill-level-90 {
+    0% { width: 0; }
+    100% { width: 90%; }
+  }
+
+  @keyframes skill-level-60 {
+    0% { width: 0; }
+    100% { width: 60%; }
+  }
+
+  @keyframes skill-level-75 {
+    0% { width: 0; }
+    100% { width: 75%; }
+  }
+
+  @keyframes skill-level-85 {
+    0% { width: 0; }
+    100% { width: 85%; }
+  }
+
+  @keyframes skill-level-65 {
+    0% { width: 0; }
+    100% { width: 65%; }
+  }
+
+  @keyframes skill-level-50 {
+    0% { width: 0; }
+    100% { width: 50%; }
+  }
+  @keyframes skill-level-40 {
+    0% { width: 0; }
+    100% { width: 40%; }
+  }
+  @keyframes skill-level-30 {
+    0% { width: 0; }
+    100% { width: 30%; }
+  }
+  @keyframes skill-level-20 {
+    0% { width: 0; }
+    100% { width: 20%; }
+  }
+  @keyframes skill-level-10 {
+    0% { width: 0; }
+    100% { width: 10%; }
+  }
+  @keyframes skill-level-5 {
+    0% { width: 0; }
+    100% { width: 5%; }
+  }

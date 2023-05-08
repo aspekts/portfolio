@@ -93,7 +93,10 @@ transform-origin: bottom left;
   padding: 10px;
   width: 100%;
 }
-
+.widget .presence a {
+  color: var(--bg-color);
+  text-decoration: none;
+}
 .widget .presence .icon {
   display: flex;
   justify-content: center;
