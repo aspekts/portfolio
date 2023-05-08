@@ -83,7 +83,6 @@ function mstoHMS(ms) {
 return new Date(ms).toISOString().substring(11, 19);
 }
 function presenceUpdate(presence) {
-  console.log(presence);
     if (presence) {
       if (presence.listening_to_spotify) {
         const songURL = `https://open.spotify.com/track/${presence.spotify.track_id}`
@@ -94,7 +93,7 @@ function presenceUpdate(presence) {
         spotifyPresence.querySelector(".status").innerHTML = `<a href="${songURL}">🎶 · ${songName}<br />🎤 · ${artistName}<br />💽 · ${albumName}</a>`;
         spotifyPresence.style.display = "flex";
         function updateTimestamp() {
-        spotifyPresence.querySelector(".duration").innerText = `${msToMinutesAndSeconds(
+        spotifyPresence.querySelector(".duration").innerText = `🕒 · ${msToMinutesAndSeconds(
           new Date().getTime() - presence.spotify.timestamps.start,
         )} - ${msToMinutesAndSeconds(presence.spotify.timestamps.end - presence.spotify.timestamps.start)}`;
       }
@@ -184,7 +183,7 @@ function presenceUpdate(presence) {
     socket.onclose = (event) => {
       clearInterval(lanyardHeartbeat);
       clearInterval(spotifyInterval);
-
+      clearInterval(regInterval);
       console.log('Socket closed', event.reason, event.code);
       connect();
     };

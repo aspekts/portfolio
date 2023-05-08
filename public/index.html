@@ -24,7 +24,8 @@
     <title>Marcus Kamuntu - Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="https://aspekts.dev/img/favicon.ico">
     <script src="js/script.js"></script>
@@ -32,32 +33,29 @@
 </head>
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 <body>
-  <div class="spinner-border text-dark" id="loading"></div>
-<nav class="navbar navbar-expand-sm">
-  <a class="navbar-brand" href="#">
-    <img src="https://aspekts.dev/img/whitelogo_tp.png" alt="Logo" style="width:170px;">
-  </a>
-  <div id="navbarcontact">
-  <ul class="navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link text-light" href="#">About</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-light" href="/projects/">Projects</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-light" href="/skills/">Skills</a>
- </li>
-  <li class="nav-item">
-    <a class="nav-link text-light" href="/contact/">Contact</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-light" href="https://links.aspekts.dev/">Other Links</a>
-  </li>
-  </ul>
-</nav>
-  </div>
 <div class="container-fluid">
+  <div class="spinner-border text-dark" id="loading"></div>
+<nav class="navbar navbar-dark navbar-expand-sm">
+  <a class="navbar-brand" href="#">
+    <img src="https://aspekts.dev/img/whitelogo_tp.png" height="120" alt="Logo">
+  </a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+  <div id="navbarcontact">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link text-light" href="#">About</a>
+    <a class="nav-item nav-link text-light" href="/projects/">Projects</a>
+    <a class="nav-item nav-link text-light" href="/skills/">Skills</a>
+    <a class="nav-item nav-link text-light" href="/contact/">Contact</a>
+    <a class="nav-item nav-link text-light" href="https://links.aspekts.dev/">Other Links</a>
+  </div>
+  </div>
+</div>
+</nav>
+
+
 <h1>I am 
   <span
      class="txt-rotate"
@@ -89,9 +87,9 @@
         </span>
         <div class="details">
           <h4>Spotify</h4>
-          <p class="status">
-          <div class="duration"></div>
-          </p>
+          <p class="status"></p>
+          <p class="duration"></p>
+
         </div>
       </div>
     </div>
