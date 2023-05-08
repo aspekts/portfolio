@@ -115,7 +115,11 @@ transform-origin: bottom left;
 .widget .presence .details {
   flex: 1;
 }
-
+.widget .presence .duration {
+  display: flex;
+  font-size: 14px;
+  flex: 1;
+}
 .widget .presence h4 {
   font-size: 18px;
   font-weight: bold;

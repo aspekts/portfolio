@@ -71,13 +71,16 @@ const Event = {
 
 let lanyardHeartbeat;
 let spotifyInterval;
-
+let regInterval;
 function msToMinutesAndSeconds(ms) {
   let minutes = Math.floor(ms / 60000);
   let seconds = Number(((ms % 60000) / 1000).toFixed(0));
   return seconds == 60
     ? minutes + 1 + ":00"
     : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+function mstoHMS(ms) {
+return new Date(ms).toISOString().substring(11, 19);
 }
 function presenceUpdate(presence) {
   console.log(presence);
@@ -107,10 +110,19 @@ function presenceUpdate(presence) {
       }
       if (presence.activities?.length > 0) {
         presence.activities.forEach(activity => {
+
           if (activity.type === 0 && activity.application_id === "383226320970055681") {
             const vscodePresence = document.querySelector(".presence.vscode");
             vscodePresence.querySelector(".status").innerHTML = `${ activity.state ? `${activity.state} <br />` : ""} ${activity.details}`;
             vscodePresence.style.display = "flex";
+            function regupdateTimestamp() {
+            vscodePresence.querySelector(".duration").innerText = `${mstoHMS(
+              new Date().getTime() - activity.timestamps.start,
+            )} elapsed`;
+          }
+          clearInterval(regInterval);
+          regInterval = setInterval(() => regupdateTimestamp(), 800);
+          regupdateTimestamp();
           }
           else {
             const vscodePresence = document.querySelector(".presence.vscode");
