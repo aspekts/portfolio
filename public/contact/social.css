@@ -10,16 +10,15 @@ html,body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: auto;
   align-items: center;
-  color:antiquewhite;
+  color:#aaa;
   font-size:1.2rem;
 }
 .social-media a {
-  margin: 10px;
   align-items: center;
   font-size: 2rem;
   text-align:center;
-  display: inline-block;
   position: relative;
   color: #0087ca;
 }
@@ -49,7 +48,9 @@ transform-origin: bottom left;
 }
 .contact {
   justify-content: space-between;
-  color:antiquewhite;
+  align-items: center;
+  text-align: center;
+  color:#aaa;
   font-size:1.2rem;
 }
 .contact a {
