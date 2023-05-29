@@ -25,6 +25,10 @@ html,body {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .card-title {
+  a:link { text-decoration: none; }
+  a:visited { text-decoration: none; }
+  a:hover { text-decoration: none; }
+  a:active { text-decoration: none; }
   font-weight: 700;
   margin-bottom: 10px;
   color: #333;
