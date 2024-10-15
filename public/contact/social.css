@@ -6,84 +6,7 @@ html,body {
   color: #aaa
 }
 
-.social-media{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: auto;
-  align-items: center;
-  color:#aaa;
-  font-size:1.2rem;
-}
-.social-media a {
-  align-items: center;
-  font-size: 2rem;
-  text-align:center;
-  position: relative;
-  color: #0087ca;
-}
-.social-media a i{
-cursor: pointer;
-}
-.social-media  a:hover {
-color: #00a9e2;
-text-decoration: underline;
-}
-.social-media a:after {
-content: '';
-position: absolute;
-width: 100%;
-transform: scaleX(0);
-height: 2px;
-bottom: 0;
-left: 0;
-background-color: 
-#0087ca;
-transform-origin: bottom right;
-transition: transform 0.25s ease-out;
-}
-.social-media a:hover:after {
-transform: scaleX(1);
-transform-origin: bottom left;
-}
-.contact {
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  color:#aaa;
-  font-size:1.2rem;
-}
-.contact a {
-  align-items: center;
-  text-align:center;
-  display: inline-block;
-  position: relative;
-  color: #d82b2b;
-}
-.contact a i{
-cursor: pointer;
-}
-.contact  a:hover {
-color: #7ccee9;
-text-decoration: none;
-}
-.contact a:after {
-content: '';
-position: absolute;
-width: 100%;
-transform: scaleX(0);
-height: 2px;
-bottom: 0;
-left: 0;
-background-color:#0087ca;
-transform-origin: bottom right;
-transition: transform 0.25s ease-out;
-}
 
-.contact a:hover:after {
-transform: scaleX(1);
-transform-origin: bottom left;
-}
 #navbarcontact {
 justify-content: space-between;
 color:antiquewhite;
@@ -115,4 +38,65 @@ transition: transform 0.25s ease-out;
 #navbarcontact a:hover:after {
 transform: scaleX(1);
 transform-origin: bottom left;
+}
+.contact-section {
+  margin: 20px;
+}
+
+.contact-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.social-media, .email-contact {
+  flex: 1;
+  min-width: 300px;
+}
+
+.social-media ul {
+  list-style: none;
+  padding: 0;
+}
+
+.social-media li {
+  margin-bottom: 10px;
+}
+
+.social-media a {
+  text-decoration: none;
+  color: antiquewhite;
+  display: flex;
+  align-items: center;
+}
+
+.social-media i {
+  margin-right: 8px;
+}
+
+.email-category {
+  margin-bottom: 20px;
+}
+
+.email-category h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.email-category p {
+  margin: 0;
+}
+
+.email-category a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.email-category a:hover {
+  text-decoration: underline;
 }
