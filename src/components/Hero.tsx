@@ -19,7 +19,7 @@ const Hero = () => {
   }, [spotifyPresence]);
 
   return (
-    <section className="min-h-screen bg-gray-900 flex items-center justify-center px-4 py-20 md:py-0">
+    <section id="about" className="min-h-screen bg-gray-900 flex items-center justify-center px-4 py-20 md:py-0">
       <div className="max-w-3xl w-full">
         <Terminal3D>
           <div className="font-mono text-gray-300">

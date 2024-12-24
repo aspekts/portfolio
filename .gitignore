@@ -1,3 +1,4 @@
 // vite and react gitignore
 node_modules
 dist
+.vite

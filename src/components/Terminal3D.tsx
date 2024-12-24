@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Terminal } from 'lucide-react';
 
 interface Terminal3DProps {
