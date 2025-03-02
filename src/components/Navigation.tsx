@@ -23,7 +23,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 bg-gray-900/80 backdrop-blur-sm z-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <span className="text-purple-400 font-mono font-bold">aspekts!</span>
+          <span className="text-purple-400 font-bold" style={{ fontFamily: 'Condiment, sans-serif' }}>Aspekts</span>
           
           {/* Mobile menu button */}
           <button 
