@@ -32,7 +32,7 @@ const Hero = () => {
               </div>
             </div>
             <div className="bg-gray-800 p-4 rounded-b-md">
-              <p className="text-gray-400">/* Backend Developer | AI and Data Enthusiast */</p>
+              <p className="text-gray-400">/* Full Stack Developer | AI and Data Enthusiast */</p>
               <h1 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
                 Marcus
                 <br />
@@ -40,7 +40,7 @@ const Hero = () => {
               </h1>
             <p className="text-sm text-purple-400 mb-4">aka @aspekts</p>
               <p className="text-base md:text-lg text-gray-300 mb-6">
-                2nd year Computer Science student specializing in backend development
+                3rd year Computer Science student specializing in backend development
                 and looking to explore Data Science and AI solutions. Passionate about building robust server-side solutions
                 and scalable applications.
               </p>

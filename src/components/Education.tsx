@@ -8,9 +8,9 @@ const Education = () => {
     institution: 'University of Dundee',
     period: 'Sep 2024 - Present',
     details: [
-      'Currently in 2nd Year',
-      'Specialising in Data Science and AI from 3rd Year',
-      'Active member of Computing Society',
+      'Currently in 3rd Year',
+      'Specialising in Data Science and AI',
+      'Vice President of the Dundee University Computing Society',
       'Maintaining A4 (First Class) average'
     ]
   };

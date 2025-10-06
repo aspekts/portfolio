@@ -14,7 +14,7 @@ const Experience = () => {
     },
     {
       title: 'Beta Manager',
-      company: 'Documatic',
+      company: 'Rover (formerly Documatic)',
       period: 'Jun 2022 - Sep 2022',
       location: 'Remote',
       description: 'Led the beta testing and feedback process for features like Doculog (automated changelog generation) and Codesearch (natural language code search). Collaborated with developers to refine functionality, enhance user experience, and prioritize improvements based on user feedback and testing insights.',
