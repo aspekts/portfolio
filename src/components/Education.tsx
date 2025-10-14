@@ -4,7 +4,7 @@ import AnimateOnScroll from './AnimateOnScroll';
 
 const Education = () => {
   const education = {
-    degree: 'BSc Computer Science with Indsutrial Placement',
+    degree: 'BSc Computer Science with Industrial Placement',
     institution: 'University of Dundee',
     period: 'Sep 2024 - Present',
     details: [
