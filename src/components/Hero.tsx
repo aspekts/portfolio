@@ -39,11 +39,10 @@ const Hero = () => {
                 Kamuntu<span className="text-purple-400">;</span>
               </h1>
             <p className="text-sm text-purple-400 mb-4">aka @aspekts</p>
-              <p className="text-base md:text-lg text-gray-300 mb-6">
-                3rd year Computer Science student specializing in backend development
-                and looking to explore Data Science and AI solutions. Passionate about building robust server-side solutions
-                and scalable applications.
-              </p>
+            <p className="text-base md:text-lg text-gray-300 mb-6">
+            3rd year Computer Science student with a strong foundation in <span className="text-purple-400">System Architecture</span> and Full Stack Development. 
+            Founder of Yarn Development. Currently seeking a <span className="text-purple-400">Software Engineering Industrial Placement</span> to apply technical expertise in a production environment.
+            </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => scrollTo('projects')}

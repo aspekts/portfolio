@@ -1,36 +1,42 @@
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink} from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
 
 const Projects = () => {
-  const projects = [
+const projects = [
     {
-      title: 'Optimizing Pathfinding for Autonomous Electric Vehicles in Urban Environments',
-      description: 'Research project on creating a dynamic routing algorithm for autonomous electric vehicles.',
-      tags: ['Python', 'Datasets', 'NetworkX', 'Matplotlib'],
+      title: 'Distributed Task Scheduler (Quartz-Lite)',
+      description: 'High-availability job orchestration engine engineered in Java. Implements strict OOP patterns and uses custom thread-pool management for fault-tolerant concurrent execution.',
+      tags: ['Java', 'Concurrency', 'SQL', 'JUnit', 'Docker'],
       links: {
-        github: 'https://github.com/aspekts/ai-project'
+        github: 'https://github.com/aspekts/quartz-lite' // Update this link when ready
       }
     },
     {
-      title: 'Poe.com Reverse-Engineered API',
-      description: 'Self-hostable, reverse engineering of Quora\'s Poe API for free access to models such as GPT-4, Claude and more',
-      tags: ['Python', 'FastAPI', 'Docker', 'RESTful APIs'],
+      title: 'QGenie',
+      description: 'AI-driven question generation system using pretrained LLMs. Features complex prompting strategies and data validation pipelines to generate exam-style content.',
+      tags: ['Node.js', 'Express', 'LLMs', 'Tailwind CSS'],
+      links: {
+        github: 'https://github.com/aspekts/QGenie'
+      }
+    },
+    {
+      title: 'PoeAPI',
+      description: 'Reverse-engineered API wrapper for Quora\'s Poe.com. Enables the open-source community to build integrations on top of closed platforms like GPT-4 and Claude.',
+      tags: ['Python', 'FastAPI', 'Reverse Engineering'],
       links: {
         github: 'https://github.com/aspekts/PoeAPI'
       }
     },
     {
-      title: 'QGenie',
-      description: 'Uses a pre-trained LLM to generate exam-style questions and answers for UK A Level subjects ',
-      tags: ['Node.js', 'Express', 'EJS', 'Tailwind CSS'],
+      title: 'Autonomous EV Pathfinding',
+      description: 'Research project implementing dynamic graph-based routing algorithms (Dijkstra/A*) for autonomous vehicles under real-world constraints like traffic and battery charge.',
+      tags: ['Python', 'NetworkX', 'Matplotlib', 'Algorithms'],
       links: {
-        github: 'https://github.com/aspekts/QGenie',
-        live: 'https://qgenie.co.uk'
+        github: 'https://github.com/aspekts/ai-project'
       }
     }
   ];
-
   return (
     <section id="projects" className="bg-gray-900 py-20 px-4">
       <div className="max-w-6xl mx-auto">

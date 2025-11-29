@@ -3,22 +3,30 @@ import SectionTitle from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
 
 const Experience = () => {
-  const experiences = [
+const experiences = [
     {
       title: 'Founder and CEO',
       company: 'Yarn Development',
       period: 'Mar 2021 - Present',
       location: 'Hybrid',
-      description: 'Yarn Development is a young, dynamic company that blends AI innovation with practical, user-friendly solutions across education, transportation, and analytics. It has great potential for growth and further specialization in the AI-driven SaaS market.',
-      technologies: ['Node.js', 'Python', 'MongoDB', 'React', 'RESTful APIs']
+      description: 'Spearheading freelance full-stack solutions for clients. Implementing responsive UIs with React/Next.js and automating deployment pipelines using Vercel and CI/CD workflows.',
+      technologies: ['Next.js', 'DevOps', 'PostgreSQL', 'CI/CD']
     },
     {
       title: 'Beta Manager',
       company: 'Rover (formerly Documatic)',
       period: 'Jun 2022 - Sep 2022',
       location: 'Remote',
-      description: 'Led the beta testing and feedback process for features like Doculog (automated changelog generation) and Codesearch (natural language code search). Collaborated with developers to refine functionality, enhance user experience, and prioritize improvements based on user feedback and testing insights.',
-      technologies: ['Git', 'GitHub']
+      description: 'Led beta testing for AI-related developer tools, gathering insights to improve NLP-driven features like Codesearch. Collaborated with engineering teams to refine system usability based on user feedback.',
+      technologies: ['Agile', 'Git', 'Product Management']
+    },
+    {
+      title: 'Co-Founder and Lead Developer',
+      company: 'Pollo Game Boat',
+      period: 'Feb 2021 - Jun 2022',
+      location: 'Remote',
+      description: 'Designed and scaled a Discord bot with a simulated economy to 250,000+ active users. Migrated backend infrastructure from MySQL to MongoDB and refactored from Node.js to TypeScript for scalability.',
+      technologies: ['TypeScript', 'MongoDB', 'Node.js', 'Scalability']
     }
   ];
 
