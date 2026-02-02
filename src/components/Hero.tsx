@@ -25,21 +25,21 @@ const Hero = () => {
           <div className="font-mono text-gray-300">
             <div className="bg-gray-700 p-2 rounded-t-md">
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="size-3 bg-red-500 rounded-full"></div>
+                <div className="size-3 bg-yellow-500 rounded-full"></div>
+                <div className="size-3 bg-green-500 rounded-full"></div>
                 <div className="flex-1 flex justify-center">~/src/ABOUT.md</div>
               </div>
             </div>
             <div className="bg-gray-800 p-4 rounded-b-md">
               <p className="text-gray-400">/* Full Stack Developer | AI and Data Enthusiast */</p>
-              <h1 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                 Marcus
                 <br />
                 Kamuntu<span className="text-purple-400">;</span>
               </h1>
             <p className="text-sm text-purple-400 mb-4">aka @aspekts</p>
-            <p className="text-base md:text-lg text-gray-300 mb-6">
+            <p className="text-base md:text-lg text-gray-300 mb-6 text-pretty">
             3rd year Computer Science student with a strong foundation in <span className="text-purple-400">System Architecture</span> and Full Stack Development. 
             Founder of Yarn Development. Currently seeking a <span className="text-purple-400">Software Engineering Industrial Placement</span> to apply technical expertise in a production environment.
             </p>

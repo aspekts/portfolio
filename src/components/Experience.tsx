@@ -41,7 +41,7 @@ const experiences = [
           {experiences.map((exp, index) => (
             <AnimateOnScroll key={index}>
               <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-                <h3 className="text-xl font-bold text-white">{exp.title}</h3>
+                <h3 className="text-xl font-bold text-white text-balance">{exp.title}</h3>
                 <p className="text-purple-400 font-semibold mb-2">{exp.company}</p>
                 <div className="flex items-center gap-4 text-gray-400 text-sm mb-4">
                   <span className="flex items-center gap-1">
@@ -53,7 +53,7 @@ const experiences = [
                     {exp.location}
                   </span>
                 </div>
-                <p className="text-gray-300 mb-4">{exp.description}</p>
+                <p className="text-gray-300 mb-4 text-pretty">{exp.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech, techIndex) => (
                     <span key={techIndex} className="text-sm bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">

@@ -53,8 +53,8 @@ const projects = [
           {projects.map((project, index) => (
             <AnimateOnScroll key={index} className="h-full">
               <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700 h-full">
-                <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3 text-balance">{project.title}</h3>
+                <p className="text-gray-300 mb-4 text-pretty">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, tagIndex) => (
                     <span key={tagIndex} className="text-sm bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">
@@ -63,11 +63,19 @@ const projects = [
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <a href={project.links.github} className="text-gray-400 hover:text-white transition-colors">
+                  <a 
+                    href={project.links.github} 
+                    className="text-gray-400 hover:text-white transition-colors"
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
                     <Github size={20} />
                   </a>
                   {project.links.live && (
-                    <a href={project.links.live} className="text-gray-400 hover:text-white transition-colors">
+                    <a 
+                      href={project.links.live} 
+                      className="text-gray-400 hover:text-white transition-colors"
+                      aria-label={`View ${project.title} live demo`}
+                    >
                       <ExternalLink size={20} />
                     </a>
                   )}

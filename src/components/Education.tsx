@@ -26,7 +26,7 @@ const Education = () => {
           <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
             <div className="flex items-center gap-2 mb-4">
               <GraduationCap className="text-purple-400" size={24} />
-              <h3 className="text-xl font-bold text-white">{education.degree}</h3>
+              <h3 className="text-xl font-bold text-white text-balance">{education.degree}</h3>
             </div>
             <p className="text-purple-400 font-semibold mb-2">{education.institution}</p>
             <div className="flex items-center gap-2 text-gray-400 text-sm mb-4">

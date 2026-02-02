@@ -52,8 +52,8 @@ const Contact = () => {
 
           <AnimateOnScroll>
             <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-              <h3 className="text-xl font-bold text-white mb-4">Download Resume</h3>
-              <p className="text-gray-300 mb-6">
+              <h3 className="text-xl font-bold text-white mb-4 text-balance">Download Resume</h3>
+              <p className="text-gray-300 mb-6 text-pretty">
                 Get a detailed overview of my experience, skills, and qualifications.
               </p>
               <a

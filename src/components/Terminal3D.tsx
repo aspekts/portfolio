@@ -10,10 +10,10 @@ const Terminal3D = ({ children }: Terminal3DProps) => {
     <div className="bg-gray-800/50 p-8 rounded-lg border border-gray-700">
       <div className="flex items-center gap-2 mb-6">
         <Terminal className="text-purple-400" size={24} />
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        <div className="flex gap-2" aria-hidden="true">
+          <div className="size-3 rounded-full bg-red-500"></div>
+          <div className="size-3 rounded-full bg-yellow-500"></div>
+          <div className="size-3 rounded-full bg-green-500"></div>
         </div>
       </div>
       {children}
