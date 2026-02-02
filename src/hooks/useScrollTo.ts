@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback } from 'react';
 
 const useScrollTo = () => {
@@ -12,5 +14,6 @@ const useScrollTo = () => {
   }, []);
 
   return scrollTo;
-}
+};
+
 export default useScrollTo;

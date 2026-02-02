@@ -1,6 +1,8 @@
+'use client';
+
 import { useState } from 'react';
 import { Code2, User, Briefcase, GraduationCap, Mail, Menu, X } from 'lucide-react';
-import useScrollTo from '../hooks/useScrollTo';
+import useScrollTo from '@/hooks/useScrollTo';
 
 const Navigation = () => {
   const scrollTo = useScrollTo();
@@ -20,15 +22,17 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gray-900/80 backdrop-blur-sm z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-gray-900/80 backdrop-blur-sm z-50" aria-label="Main navigation">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <span className="text-purple-400 font-bold" style={{ fontFamily: 'Condiment, sans-serif' }}>Aspekts</span>
+          <span className="text-purple-400 font-bold font-condiment">Aspekts</span>
           
           {/* Mobile menu button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-gray-300 hover:text-purple-400"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
