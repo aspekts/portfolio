@@ -1,3 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -12,16 +16,20 @@
 
 # Cache static assets
 [[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# SPA fallback - redirect all routes to index.html
+# Handle client-side routing for SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = {Role = ["admin", "visitor"]}
 
 [[redirects]]
   from = "/arc-sw.js"

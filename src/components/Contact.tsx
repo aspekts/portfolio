@@ -1,29 +1,31 @@
+'use client';
+
 import { Mail, Github, Linkedin, FileText } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
 
-const Contact = () => {
-  const contactMethods = [
-    {
-      icon: <Mail className="text-purple-400" size={24} />,
-      label: 'Email',
-      value: 'mail@aspekts.dev',
-      href: 'mailto:mail@aspekts.dev'
-    },
-    {
-      icon: <Github className="text-purple-400" size={24} />,
-      label: 'GitHub',
-      value: '@aspekts',
-      href: 'https://github.com/aspekts'
-    },
-    {
-      icon: <Linkedin className="text-purple-400" size={24} />,
-      label: 'LinkedIn',
-      value: 'Marcus Kamuntu',
-      href: 'https://linkedin.com/in/mkamuntu'
-    }
-  ];
+const contactMethods = [
+  {
+    icon: <Mail className="text-purple-400" size={24} />,
+    label: 'Email',
+    value: 'mail@aspekts.dev',
+    href: 'mailto:mail@aspekts.dev'
+  },
+  {
+    icon: <Github className="text-purple-400" size={24} />,
+    label: 'GitHub',
+    value: '@aspekts',
+    href: 'https://github.com/aspekts'
+  },
+  {
+    icon: <Linkedin className="text-purple-400" size={24} />,
+    label: 'LinkedIn',
+    value: 'Marcus Kamuntu',
+    href: 'https://linkedin.com/in/mkamuntu'
+  }
+];
 
+const Contact = () => {
   return (
     <section id="contact" className="bg-gray-900 py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -39,6 +41,8 @@ const Contact = () => {
                   key={index}
                   href={method.href}
                   className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-purple-400 transition-colors"
+                  target={method.href.startsWith('http') ? '_blank' : undefined}
+                  rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
                   {method.icon}
                   <div>
@@ -57,7 +61,7 @@ const Contact = () => {
                 Get a detailed overview of my experience, skills, and qualifications.
               </p>
               <a
-                href="../assets/resume.pdf"
+                href="/assets/resume.pdf"
                 download
                 className="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-md transition-colors"
               >
@@ -69,7 +73,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default Contact;

@@ -1,7 +1,10 @@
+'use client';
+
 import Terminal3D from './Terminal3D';
-import useScrollTo from '../hooks/useScrollTo';
-import useLanyard, { msToMinutesAndSeconds } from '../hooks/useLanyard';
+import useScrollTo from '@/hooks/useScrollTo';
+import useLanyard, { msToMinutesAndSeconds } from '@/hooks/useLanyard';
 import { useEffect, useState } from 'react';
+
 const Hero = () => {
   const scrollTo = useScrollTo();
   const { spotifyPresence, vscodePresence } = useLanyard();
@@ -32,17 +35,17 @@ const Hero = () => {
               </div>
             </div>
             <div className="bg-gray-800 p-4 rounded-b-md">
-              <p className="text-gray-400">/* Full Stack Developer | AI and Data Enthusiast */</p>
+              <p className="text-gray-400">{`/* Full Stack Developer | AI and Data Enthusiast */`}</p>
               <h1 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                 Marcus
                 <br />
                 Kamuntu<span className="text-purple-400">;</span>
               </h1>
-            <p className="text-sm text-purple-400 mb-4">aka @aspekts</p>
-            <p className="text-base md:text-lg text-gray-300 mb-6 text-pretty">
-            3rd year Computer Science student with a strong foundation in <span className="text-purple-400">System Architecture</span> and Full Stack Development. 
-            Founder of Yarn Development. Currently seeking a <span className="text-purple-400">Software Engineering Industrial Placement</span> to apply technical expertise in a production environment.
-            </p>
+              <p className="text-sm text-purple-400 mb-4">aka @aspekts</p>
+              <p className="text-base md:text-lg text-gray-300 mb-6 text-pretty">
+                3rd year Computer Science student with a strong foundation in <span className="text-purple-400">System Architecture</span> and Full Stack Development. 
+                Founder of Yarn Development. Currently seeking a <span className="text-purple-400">Software Engineering Industrial Placement</span> to apply technical expertise in a production environment.
+              </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => scrollTo('projects')}
@@ -57,20 +60,20 @@ const Hero = () => {
                   getInTouch()
                 </button>
               </div>
-                {spotifyPresence && (
+              {spotifyPresence && (
                 <div className="mt-6 bg-gray-900 p-4 rounded-md">
                   <div className="text-green-400">
-                  <p>$ <span className="text-gray-300">Listening to:</span> <span className="text-purple-400">{spotifyPresence.song}</span> by <span className="text-purple-400">{spotifyPresence.artist}</span> | {elapsedTime} / {spotifyPresence.duration}</p>
+                    <p>$ <span className="text-gray-300">Listening to:</span> <span className="text-purple-400">{spotifyPresence.song}</span> by <span className="text-purple-400">{spotifyPresence.artist}</span> | {elapsedTime} / {spotifyPresence.duration}</p>
                   </div>
                 </div>
-                )}
-                {vscodePresence && (
+              )}
+              {vscodePresence && (
                 <div className="mt-2 bg-gray-900 p-4 rounded-md">
                   <div className="text-green-400">
-                  <p>$ <span className="text-gray-300">Currently coding in:</span> <span className="text-purple-400">{vscodePresence.state}</span></p>
+                    <p>$ <span className="text-gray-300">Currently coding in:</span> <span className="text-purple-400">{vscodePresence.state}</span></p>
                   </div>
                 </div>
-                )}
+              )}
             </div>
           </div>
         </Terminal3D>

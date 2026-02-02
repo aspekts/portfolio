@@ -1,20 +1,22 @@
+'use client';
+
 import { GraduationCap, Calendar } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
 
-const Education = () => {
-  const education = {
-    degree: 'BSc Computer Science with Industrial Placement',
-    institution: 'University of Dundee',
-    period: 'Sep 2024 - Present',
-    details: [
-      'Currently in 3rd Year',
-      'Specialising in Data Science and AI',
-      'Vice President of the Dundee University Computing Society',
-      'Maintaining A4 (First Class) average'
-    ]
-  };
+const education = {
+  degree: 'BSc Computer Science with Industrial Placement',
+  institution: 'University of Dundee',
+  period: 'Sep 2024 - Present',
+  details: [
+    'Currently in 3rd Year',
+    'Specialising in Data Science and AI',
+    'Vice President of the Dundee University Computing Society',
+    'Maintaining A4 (First Class) average'
+  ]
+};
 
+const Education = () => {
   return (
     <section id="education" className="bg-gray-900 py-20 px-4">
       <div className="max-w-6xl mx-auto">
