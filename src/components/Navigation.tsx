@@ -25,7 +25,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 bg-gray-900/80 backdrop-blur-sm z-50" aria-label="Main navigation">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <span className="text-purple-400 font-bold font-[var(--font-condiment)]">Aspekts</span>
+          <span className="text-purple-400 font-bold font-condiment">Aspekts</span>
           
           {/* Mobile menu button */}
           <button 

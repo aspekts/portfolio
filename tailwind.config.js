@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        condiment: ['var(--font-condiment)', 'cursive'],
+      },
       animation: {
         blob: 'blob 7s infinite',
       },
