@@ -106,7 +106,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={condiment.variable}>
+    <html lang="en" className={condiment.variable} style={{ colorScheme: 'dark' }}>
       <head>
         <script
           type="application/ld+json"
