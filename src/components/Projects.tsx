@@ -4,7 +4,12 @@ import { Github, ExternalLink } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
 
-const projects = [
+const projects: Array<{
+  title: string;
+  description: string;
+  tags: string[];
+  links: { github: string; live?: string };
+}> = [
   {
     title: 'Distributed Task Scheduler (Quartz-Lite)',
     description: 'High-availability job orchestration engine engineered in Java. Implements strict OOP patterns and custom thread-pool management for fault-tolerant execution.',
@@ -67,7 +72,7 @@ const Projects = () => {
                 <div className="flex gap-4">
                   <a 
                     href={project.links.github} 
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-white transition-[color]"
                     aria-label={`View ${project.title} on GitHub`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -77,7 +82,7 @@ const Projects = () => {
                   {project.links.live && (
                     <a 
                       href={project.links.live} 
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-[color]"
                       aria-label={`View ${project.title} live demo`}
                       target="_blank"
                       rel="noopener noreferrer"

@@ -49,13 +49,13 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => scrollTo('projects')}
-                  className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-md transition-colors w-full sm:w-auto text-center"
+                  className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-md transition-colors w-full sm:w-auto text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                 >
                   getProjects()
                 </button>
                 <button 
                   onClick={() => scrollTo('contact')}
-                  className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-6 py-2 rounded-md transition-colors w-full sm:w-auto text-center"
+                  className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-6 py-2 rounded-md transition-colors w-full sm:w-auto text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                 >
                   getInTouch()
                 </button>

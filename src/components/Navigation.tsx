@@ -30,7 +30,7 @@ const Navigation = () => {
           {/* Mobile menu button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-purple-400"
+            className="md:hidden text-gray-300 hover:text-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded-md"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
           >
@@ -43,7 +43,7 @@ const Navigation = () => {
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.id)}
-                className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-mono flex items-center gap-2 transition-colors"
+                className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-mono flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
               >
                 {item.icon}
                 {item.label}
@@ -59,7 +59,7 @@ const Navigation = () => {
               <button
                 key={item.label}
                 onClick={() => handleNavClick(item.id)}
-                className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-base font-mono w-full text-left flex items-center gap-2 transition-colors"
+                className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-base font-mono w-full text-left flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
               >
                 {item.icon}
                 {item.label}
