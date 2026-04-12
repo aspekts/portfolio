@@ -48,6 +48,14 @@ const useLanyard = () => {
   const [presence, setPresence] = useState<PresenceData | null>(null);
   const lanyardHeartbeat = useRef<NodeJS.Timeout | null>(null);
 
+  // Tick every second so elapsed times recompute from Date.now() continuously,
+  // independent of how often Discord pushes PRESENCE_UPDATE events (~5 s).
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => setTick((t) => t + 1), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     let socket: WebSocket;
     
@@ -78,7 +86,7 @@ const useLanyard = () => {
       };
 
       socket.onclose = () => {
-        setTimeout(connectToLanyard, 1000);
+        setTimeout(connectToLanyard, 700);
       };
     };
 
