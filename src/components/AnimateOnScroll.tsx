@@ -7,9 +7,10 @@ import { useInView } from 'react-intersection-observer';
 interface AnimateOnScrollProps {
   children: ReactNode;
   className?: string;
+  delay?: number;
 }
 
-const AnimateOnScroll = ({ children, className = '' }: AnimateOnScrollProps) => {
+const AnimateOnScroll = ({ children, className = '', delay = 0 }: AnimateOnScrollProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -25,9 +26,7 @@ const AnimateOnScroll = ({ children, className = '' }: AnimateOnScrollProps) => 
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  // Server and initial client render use the same values (no transform skip).
-  // After hydration, reducedMotion resolves and animate target adjusts.
-  const hidden = { opacity: 0, y: reducedMotion ? 0 : 50 };
+  const hidden = { opacity: 0, y: reducedMotion ? 0 : 20 };
   const visible = { opacity: 1, y: 0 };
 
   return (
@@ -35,7 +34,7 @@ const AnimateOnScroll = ({ children, className = '' }: AnimateOnScrollProps) => 
       ref={ref}
       initial={hidden}
       animate={inView ? visible : hidden}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: delay / 1000 }}
       className={className}
     >
       {children}

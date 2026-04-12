@@ -61,7 +61,7 @@ const useLanyard = () => {
       };
 
       socket.onopen = () => {
-        console.log('Connected to Lanyard');
+        // connected
       };
 
       socket.onmessage = (event) => {
@@ -78,7 +78,6 @@ const useLanyard = () => {
       };
 
       socket.onclose = () => {
-        console.log('Lanyard socket closed, reconnecting...');
         setTimeout(connectToLanyard, 1000);
       };
     };

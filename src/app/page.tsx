@@ -1,32 +1,37 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
-import Education from '@/components/Education';
 import Contact from '@/components/Contact';
-import GridBackground from '@/components/GridBackground';
+import CustomCursor from '@/components/CustomCursor';
 
 export default function Home() {
   return (
-    <div className="bg-gray-900 min-h-dvh">
+    <div className="bg-void min-h-dvh">
+      <CustomCursor />
       <a
         href="#about"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-purple-500 focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-void focus:px-4 focus:py-2 focus:rounded font-mono text-sm"
       >
         Skip to main content
       </a>
-      <GridBackground />
       <Navigation />
       <main id="main-content">
         <Hero />
+        <About />
         <Projects />
         <Experience />
-        <Education />
         <Contact />
       </main>
-      <footer className="bg-gray-900 py-8 px-4 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto text-center text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Marcus Kamuntu. All rights reserved.</p>
+      <footer className="px-8 py-8 border-t border-white/[0.06]">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <p className="font-mono text-[11px] text-white/25">
+            © {new Date().getFullYear()} Marcus Kamuntu
+          </p>
+          <p className="font-mono text-[11px] text-white/35">
+            aspekts.dev · built with Next.js, Tailwind, and a lot of ☕
+          </p>
         </div>
       </footer>
     </div>

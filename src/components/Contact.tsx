@@ -1,75 +1,98 @@
 'use client';
 
-import { Mail, Github, Linkedin, FileText } from 'lucide-react';
-import SectionTitle from './SectionTitle';
+import SectionHeader from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
+import { useTilt } from '@/hooks/useTilt';
 
-const contactMethods = [
+const contactItems = [
   {
-    icon: <Mail className="text-purple-400" size={24} />,
-    label: 'Email',
-    value: 'mail@aspekts.dev',
-    href: 'mailto:mail@aspekts.dev'
+    icon: '@',
+    label: 'email',
+    value: 'home@aspekts.dev',
+    href: 'mailto:home@aspekts.dev',
+    highlight: false,
   },
   {
-    icon: <Github className="text-purple-400" size={24} />,
-    label: 'GitHub',
+    icon: 'gh',
+    label: 'github',
     value: '@aspekts',
-    href: 'https://github.com/aspekts'
+    href: 'https://github.com/aspekts',
+    highlight: false,
   },
   {
-    icon: <Linkedin className="text-purple-400" size={24} />,
-    label: 'LinkedIn',
+    icon: 'in',
+    label: 'linkedin',
     value: 'Marcus Kamuntu',
-    href: 'https://linkedin.com/in/mkamuntu'
-  }
+    href: 'https://linkedin.com/in/mkamuntu',
+    highlight: false,
+  },
+  {
+    icon: 'cv',
+    label: 'resume',
+    value: 'downloadCV()',
+    href: '/assets/resume.pdf',
+    highlight: true,
+    download: true,
+  },
 ];
+
+const ContactCard = ({ item }: { item: typeof contactItems[number] }) => {
+  const { onMouseMove, onMouseLeave } = useTilt(4);
+
+  return (
+    <a
+      href={item.href}
+      download={item.download}
+      target={item.href.startsWith('http') ? '_blank' : undefined}
+      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className={`flex items-center gap-3 p-4 rounded-[6px] border transition-colors duration-[220ms] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-signal group active:scale-[0.98] ${
+        item.highlight
+          ? 'border-signal/20 hover:border-signal/35'
+          : 'border-white/[0.07] hover:border-white/[0.16]'
+      }`}
+    >
+      {/* Icon */}
+      <div
+        className={`w-8 h-8 rounded flex items-center justify-center font-mono text-[12px] flex-shrink-0 border ${
+          item.highlight
+            ? 'bg-signal/[0.08] border-signal/20 text-signal'
+            : 'bg-white/[0.04] border-white/[0.1] text-white/50'
+        }`}
+      >
+        {item.icon}
+      </div>
+      <div>
+        <p className="font-mono text-[10px] text-white/40 tracking-[0.1em] uppercase mb-[2px]">
+          {item.label}
+        </p>
+        <p
+          className={`font-mono text-[13px] transition-colors ${
+            item.highlight
+              ? 'text-signal/80 group-hover:text-signal'
+              : 'text-white/55 group-hover:text-white/80'
+          }`}
+        >
+          {item.value}
+        </p>
+      </div>
+    </a>
+  );
+};
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-gray-900 py-20 px-4">
+    <section id="contact" className="py-16 px-8">
       <div className="max-w-6xl mx-auto">
-        <AnimateOnScroll>
-          <SectionTitle symbol="#" title="Get in Touch" />
-        </AnimateOnScroll>
+        <SectionHeader num="// 04" title="getInTouch()" />
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <AnimateOnScroll>
-            <div className="space-y-6">
-              {contactMethods.map((method, index) => (
-                <a
-                  key={index}
-                  href={method.href}
-                  className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-purple-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
-                  target={method.href.startsWith('http') ? '_blank' : undefined}
-                  rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                >
-                  {method.icon}
-                  <div>
-                    <p className="text-sm text-gray-400">{method.label}</p>
-                    <p className="text-white">{method.value}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll>
-            <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-              <h3 className="text-xl font-bold text-white mb-4 text-balance">Download Resume</h3>
-              <p className="text-gray-300 mb-6 text-pretty">
-                Get a detailed overview of my experience, skills, and qualifications.
-              </p>
-              <a
-                href="/assets/resume.pdf"
-                download
-                className="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
-              >
-                <FileText size={20} />
-                Download CV
-              </a>
-            </div>
-          </AnimateOnScroll>
+        <div className="grid sm:grid-cols-2 gap-[10px] max-w-xl">
+          {contactItems.map((item, index) => (
+            <AnimateOnScroll key={item.label} delay={index * 60}>
+              <ContactCard item={item} />
+            </AnimateOnScroll>
+          ))}
         </div>
       </div>
     </section>

@@ -7,24 +7,53 @@
 }
 
 body {
-  background-color: #111827;
+  background-color: #0D0D0F;
   color: #fff;
+  font-family: var(--font-sans), Onest, system-ui, sans-serif;
+}
+
+/* Custom cursor — suppress native cursor site-wide when JS cursor is active */
+html.cursor-active,
+html.cursor-active * {
+  cursor: none !important;
+}
+
+/* Typewriter cursor blink */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: cursor-blink 800ms step-end infinite;
+}
+
+/* Font variation utilities */
+.fvs-wide {
+  font-variation-settings: 'wdth' 112;
+}
+.fvs-normal {
+  font-variation-settings: 'wdth' 100;
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #111115;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4f46e5;
-  border-radius: 4px;
+  background: #7C6FD4;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4338ca;
+  background: #9D93E8;
 }

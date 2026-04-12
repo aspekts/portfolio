@@ -7,25 +7,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        condiment: ['var(--font-condiment)', 'cursive'],
+        display: ['var(--font-display)', 'Bricolage Grotesque', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Onest', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
       },
-      animation: {
-        blob: 'blob 7s infinite',
-      },
-      keyframes: {
-        blob: {
-          '0%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
-          '33%': {
-            transform: 'translate(30px, -50px) scale(1.1)',
-          },
-          '66%': {
-            transform: 'translate(-20px, 20px) scale(0.9)',
-          },
-          '100%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
+      colors: {
+        void: '#0D0D0F',
+        surface: '#111115',
+        elevated: '#1A1A22',
+        overlay: '#242430',
+        signal: {
+          DEFAULT: '#7C6FD4',
+          plus: '#9D93E8',
+          minus: '#5A4EBA',
         },
       },
     },

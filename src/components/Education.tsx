@@ -21,7 +21,7 @@ const Education = () => {
     <section id="education" className="bg-gray-900 py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <AnimateOnScroll>
-          <SectionTitle symbol="#" title="Education" />
+          <SectionTitle num="// 04" title="getEducation()" />
         </AnimateOnScroll>
         
         <AnimateOnScroll>

@@ -1,67 +1,84 @@
 'use client';
 
-import { Calendar, MapPin } from 'lucide-react';
-import SectionTitle from './SectionTitle';
+import SectionHeader from './SectionTitle';
 import AnimateOnScroll from './AnimateOnScroll';
 
-const experiences = [
+const timeline = [
   {
-    title: 'Founder and CEO',
-    company: 'Yarn Development',
-    period: 'Mar 2021 - Present',
-    location: 'Hybrid',
-    description: 'Spearheading freelance full-stack solutions for clients. Implementing responsive UIs with React/Next.js and automating deployment pipelines using Vercel and CI/CD workflows.',
-    technologies: ['Next.js', 'DevOps', 'PostgreSQL', 'CI/CD']
+    year: '2025 — present',
+    title: 'Founder & CEO — Sendix AI Ltd.',
+    org: 'GovTech · Edinburgh / Remote',
+    desc: 'Building compliance infrastructure for the UK SEND statutory system. Azure OpenAI and Wonde API for document parsing and EHCP generation. Three venture awards; 30+ school commercial waitlist. Incorporating; Scottish EDGE grant application submitted.',
+    active: true,
   },
   {
-    title: 'Beta Manager',
-    company: 'Rover (formerly Documatic)',
-    period: 'Jun 2022 - Sep 2022',
-    location: 'Remote',
-    description: 'Led beta testing for AI-related developer tools, gathering insights to improve NLP-driven features like Codesearch. Collaborated with engineering teams to refine system usability based on user feedback.',
-    technologies: ['Agile', 'Git', 'Product Management']
+    year: 'spring 2026 · ML Technical Lead',
+    title: 'Industry Project — NCR Atleos',
+    org: 'University of Dundee · Team 5',
+    desc: 'Led the ML track for a university industry project sponsored by NCR Atleos. Built real-time ATM failure correlation across 7 log sources using Apache Kafka, with an Isolation Forest anomaly detection model and Laplace smoothing feedback loop. Deployed on Railway.',
+    active: true,
   },
   {
-    title: 'Co-Founder and Lead Developer',
-    company: 'Pollo Game Boat',
-    period: 'Feb 2021 - Jun 2022',
-    location: 'Remote',
-    description: 'Designed and scaled a Discord bot with a simulated economy to 250,000+ active users. Migrated backend infrastructure from MySQL to MongoDB and refactored from Node.js to TypeScript for scalability.',
-    technologies: ['TypeScript', 'MongoDB', 'Node.js', 'Scalability']
-  }
+    year: 'summer 2024',
+    title: 'Analyst Intern — Zamara Uganda',
+    org: 'Pension fund management · Kampala',
+    desc: 'Data analysis and internal tooling for one of East Africa\'s largest pension fund managers. Worked on actuarial data pipelines and client-facing reporting infrastructure, gaining exposure to large-scale financial data systems.',
+    active: true,
+  },
+  {
+    year: 'jun–sep 2022',
+    title: 'Beta Programme Lead — Documatic',
+    org: 'AI developer tooling · Remote',
+    desc: 'Led beta testing for an AI-powered developer tooling startup. Gathered and synthesised user insights on NLP-driven Codesearch features. Collaborated with engineering teams to iterate on usability and surface high-signal feedback from early adopters.',
+    active: true,
+  },
+  {
+    year: '2021 — present',
+    title: 'Founder & CEO — Yarn Development',
+    org: 'Digital product agency · Remote',
+    desc: 'Freelance digital product agency founded at age fifteen. Client-facing Next.js and React work across SaaS, EdTech, and marketing verticals. Automated deployment pipelines with Vercel and CI/CD; ongoing client relationships across the UK.',
+    active: false,
+  },
 ];
 
 const Experience = () => {
   return (
-    <section id="experience" className="bg-gray-900 py-20 px-4">
+    <section id="experience" className="border-b border-white/[0.06] py-16 px-8">
       <div className="max-w-6xl mx-auto">
-        <AnimateOnScroll>
-          <SectionTitle symbol="#" title="Experience" />
-        </AnimateOnScroll>
-        
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <AnimateOnScroll key={index}>
-              <div className="bg-gray-800/50 rounded-lg p-6 border border-gray-700">
-                <h3 className="text-xl font-bold text-white text-balance">{exp.title}</h3>
-                <p className="text-purple-400 font-semibold mb-2">{exp.company}</p>
-                <div className="flex items-center gap-4 text-gray-400 text-sm mb-4">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={14} />
-                    {exp.period}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MapPin size={14} />
-                    {exp.location}
-                  </span>
+        <SectionHeader num="// 03" title="getExperience()" />
+
+        <div className="max-w-2xl">
+          {timeline.map((entry, index) => (
+            <AnimateOnScroll key={entry.title} delay={index * 60}>
+              <div className="flex gap-4">
+                {/* Spine — neutral, not signal */}
+                <div className="flex flex-col items-center flex-shrink-0">
+                  <div
+                    className={`w-2 h-2 rounded-full mt-[3px] flex-shrink-0 transition-colors ${
+                      entry.active
+                        ? 'bg-white/60 border border-white/30'
+                        : 'bg-transparent border border-white/25'
+                    }`}
+                  />
+                  {index < timeline.length - 1 && (
+                    <div className="w-px flex-1 bg-white/[0.1] mt-[3px] min-h-[24px]" />
+                  )}
                 </div>
-                <p className="text-gray-300 mb-4 text-pretty">{exp.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="text-sm bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">
-                      {tech}
-                    </span>
-                  ))}
+
+                {/* Content */}
+                <div className="pb-8">
+                  <p className="font-mono text-[10px] text-white/50 tracking-[0.1em] mb-[3px]">
+                    {entry.year}
+                  </p>
+                  <p className="font-display font-semibold text-[14px] text-white leading-snug mb-[2px] fvs-normal">
+                    {entry.title}
+                  </p>
+                  <p className="font-mono text-[11px] text-white/40 mb-3">
+                    {entry.org}
+                  </p>
+                  <p className="font-sans text-[13px] text-white/50 leading-[1.75] max-w-[54ch]">
+                    {entry.desc}
+                  </p>
                 </div>
               </div>
             </AnimateOnScroll>
