@@ -77,7 +77,7 @@ const SendixCard = ({ modalOpen, onToggle }: { modalOpen: boolean; onToggle: () 
         {[
           { val: '30+', label: 'school waitlist' },
           { val: '3', label: 'venture awards' },
-          { val: '90.1%', label: 'founder equity' },
+          { val: '£7500+', label: 'funding raised' },
         ].map((s) => (
           <div key={s.label}>
             <div className="font-display font-bold text-[22px] text-white leading-none tracking-[-0.02em] fvs-normal">
