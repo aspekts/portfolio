@@ -102,7 +102,7 @@ const Hero = () => {
 
         <div style={fadeUp(180)}>
           <p className="font-sans text-[15px] text-white/55 max-w-[520px] leading-[1.75] mb-10">
-            Third-year CS student at Dundee. Founder, ML engineer, and infrastructure obsessive by practice - I've has been building real products for real people since age fifteen, and haven't stopped since.
+            Third-year CS student at Dundee. Founder, ML engineer, and infrastructure obsessive by practice - I&apos;ve has been building real products for real people since age fifteen, and haven&apos;t stopped since.
           </p>
         </div>
 
