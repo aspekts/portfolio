@@ -172,7 +172,7 @@ const Projects = () => {
                 {[
                   { val: '30+', label: 'schools waitlist' },
                   { val: '3', label: 'venture awards' },
-                  { val: '£0', label: 'raised (bootstrapped)' },
+                  { val: '£7500+', label: 'raised (bootstrapped)' },
                 ].map((s) => (
                   <div
                     key={s.label}
