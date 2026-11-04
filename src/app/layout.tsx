@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   authors: [{ name: 'Marcus Kamuntu', url: 'https://github.com/aspekts' }],
   creator: 'Marcus Kamuntu',
   alternates: { canonical: 'https://aspekts.dev/' },
-  openGraph: { type: 'website', url: 'https://aspekts.dev/', title: 'Aspekts FM: Marcus Kamuntu', description, siteName: 'aspekts.dev', locale: 'en_GB' },
-  twitter: { card: 'summary_large_image', title: 'Aspekts FM: Marcus Kamuntu', description, creator: '@xAspekts' },
+  openGraph: { type: 'website', url: 'https://aspekts.dev/', title: 'Aspekts FM: Marcus Kamuntu', description, siteName: 'aspekts.dev', locale: 'en_GB', images: [{ url: '/fm/og.jpg', width: 1200, height: 630, alt: 'Marcus Kamuntu, software engineer and founder' }] },
+  twitter: { card: 'summary_large_image', title: 'Aspekts FM: Marcus Kamuntu', description, creator: '@xAspekts', images: ['/fm/og.jpg'] },
   icons: { icon: '/favicon.ico' },
 };
 

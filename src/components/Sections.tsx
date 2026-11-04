@@ -100,16 +100,17 @@ export function Rotation() {
       <h2>On rotation</h2>
       <p className="lede">What I&apos;ve had on lately. {listening.plays} plays and {listening.hours} hours so far, across {listening.artists} artists.</p>
       <ul className="wall">
-        {tracks.slice(0, 12).map((t) => (
-          <li key={t.preview}>
-            <a href={t.link ?? undefined}>
+        {tracks.slice(0, 12).map((t) => {
+          const tile = (
+            <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={t.cover} alt="" width={200} height={200} loading="lazy" />
               <b>{t.title}</b>
               <span>{t.artist}</span>
-            </a>
-          </li>
-        ))}
+            </>
+          );
+          return <li key={t.preview}>{t.link ? <a href={t.link}>{tile}</a> : tile}</li>;
+        })}
       </ul>
       <h3>On the dial</h3>
       <p className="lede">Thirteen stations, thirteen genres, and in each one the track I&apos;ve played most that can go out clean.</p>

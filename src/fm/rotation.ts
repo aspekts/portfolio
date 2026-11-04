@@ -39,7 +39,7 @@ function fromApi({ track: t }: ApiItem): Track | null {
   };
 }
 
-/** The snapshot from the last build, replaced by this week's chart if stats.fm answers. */
+/** The last build's snapshot, replaced by this week's chart once it can fill the 12-tile wall. */
 export function useRotation(): Track[] {
   const [tracks, setTracks] = useState<Track[]>(music.rotation as Track[]);
 

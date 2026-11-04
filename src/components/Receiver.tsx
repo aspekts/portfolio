@@ -84,7 +84,10 @@ export default function Receiver() {
     const ro = new ResizeObserver(size);
     ro.observe(band);
 
+    let settled = false, printed = false;
+
     const drawRow = (rows: Float32Array) => {
+      if (reduced && (printed || !settled)) return;
       const W = band.width, tuned = freqRef.current, span = BAND.high - BAND.low;
       for (let x = 0; x < W; x++) {
         const f = BAND.low + (x / W) * span;
@@ -102,6 +105,12 @@ export default function Receiver() {
         const p = x * 4;
         row.data[p] = c[0]; row.data[p + 1] = c[1]; row.data[p + 2] = c[2]; row.data[p + 3] = 255;
       }
+      // Under reduced motion the band is one still print, once every station is on air.
+      if (reduced) {
+        for (let y = 0; y < band.height; y++) b.putImageData(row, 0, y);
+        printed = true;
+        return;
+      }
       b.drawImage(band, 0, 1);
       b.putImageData(row, 0, 0);
       bandY++;
@@ -114,6 +123,8 @@ export default function Receiver() {
         setLive(true);
       } else if (data.type === 'rows') {
         drawRow(data.rows);
+      } else if (data.type === 'ready') {
+        settled = true;
       }
     };
 
@@ -159,7 +170,7 @@ export default function Receiver() {
         // Only change song once the dial has settled, not for every station it sweeps past.
         if (playing.id !== s.id && off < SNAP) {
           if (held !== s.id) { held = s.id; heldAt = performance.now(); }
-          else if (performance.now() - heldAt > 180) { const t = songFor(s); if (t) play(asNow(s, t), t.preview); }
+          else if (performance.now() - heldAt > 180) { const t = songFor(s); if (t) play(asNow(s, t), t.preview); else stop(); }
         }
         detune(Math.min(1, off / .42));
       }
@@ -272,8 +283,8 @@ export default function Receiver() {
       <div className="screen-wrap">
         <div className="screen" onPointerDown={onScreenDown} onPointerUp={onScreenUp} onPointerCancel={() => { swipeRef.current = null; }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/fm/marcus.png" alt="Marcus, seen from behind in a white shirt, in a garden of tall golden grass" width={320} height={240} />
-          <canvas ref={screenRef} width={WIDTH} height={HEIGHT} className={live ? 'on' : ''} aria-hidden="true" />
+          <img src="/fm/marcus.png" alt={live ? '' : 'Marcus, seen from behind in a white shirt, in a garden of tall golden grass'} width={320} height={240} />
+          <canvas ref={screenRef} width={WIDTH} height={HEIGHT} className={live ? 'on' : ''} role="img" aria-label={station ? `Picture from ${station.name}` : 'Static between stations'} />
           <div className="scan" ref={scanRef} aria-hidden="true" />
         </div>
 
@@ -288,13 +299,16 @@ export default function Receiver() {
           <p className="readout"><span ref={readoutRef}>{START.toFixed(1)}</span> <small>MHz</small></p>
           <p className="now-on">{station ? <><b>{station.name}</b> {station.format}</> : 'Between stations'}</p>
           <div className="song">
-            {onAir && (
-              <a href={onAir.link ?? undefined}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={onAir.cover} alt="" width={42} height={42} />
-                <span><b>{onAir.title}</b><span>{onAir.artist}</span><em>{onAir.genre}</em></span>
-              </a>
-            )}
+            {onAir && (() => {
+              const label = (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={onAir.cover} alt="" width={42} height={42} />
+                  <span><b>{onAir.title}</b><span>{onAir.artist}</span><em>{onAir.genre}</em></span>
+                </>
+              );
+              return onAir.link ? <a href={onAir.link}>{label}</a> : <div className="song-label">{label}</div>;
+            })()}
           </div>
           <div className="tuner-btns">
             <button type="button" className="seek" onClick={() => seek(-1)} aria-label="Previous station">◀ Seek</button>

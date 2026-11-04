@@ -141,6 +141,21 @@ def workshop():
     crop.resize((320, 240), Image.LANCZOS).save(OUT / "workshop.png", optimize=True)
 
 
+def og():
+    """The share card: 1200x630, name on the page colour beside the photo."""
+    card = Image.new("RGB", (1200, 630), YELLOW)
+    d = ImageDraw.Draw(card)
+    photo = ImageOps.fit(Image.open(HERE / "source/marcus.jpg").convert("RGB"), (560, 630), Image.LANCZOS, centering=(.62, .78))
+    card.paste(photo, (640, 0))
+    d.text((48, 150), "Marcus", font=ImageFont.truetype(str(HERE / "fonts/DelaGothicOne-Regular.ttf"), 94), fill=INK)
+    d.text((48, 262), "Kamuntu", font=ImageFont.truetype(str(HERE / "fonts/DelaGothicOne-Regular.ttf"), 94), fill=INK)
+    f = ImageFont.truetype(str(HERE / "fonts/SplineSans.ttf"), 34)
+    f.set_variation_by_axes([700])
+    d.text((52, 398), "Software engineer and founder.", font=f, fill=INK)
+    d.text((52, 442), "I collect music and make things.", font=f, fill=INK)
+    card.save(OUT / "og.jpg", quality=86, optimize=True)
+
+
 OUT.mkdir(exist_ok=True)
-for draw in (marcus, sendix, ncr, yarn, pollo, poeapi, goodcode, unclaimed, jotter, fluxfile, trackside, recordbox, workshop):
+for draw in (og, marcus, sendix, ncr, yarn, pollo, poeapi, goodcode, unclaimed, jotter, fluxfile, trackside, recordbox, workshop):
     draw()

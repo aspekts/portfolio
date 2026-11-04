@@ -4,6 +4,7 @@ import { Guide, NowBar, OffAir, Rotation, Shelf, Sign } from '@/components/Secti
 export default function Home() {
   return (
     <>
+      <a className="skip" href="#main">Skip to the receiver</a>
       <header className="masthead">
         <p className="logo">Aspekts</p>
         <nav aria-label="Sections">
@@ -15,7 +16,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <main>
+      <main id="main" tabIndex={-1}>
         <section className="receiver" aria-label="Aspekts FM receiver">
           <div className="identity">
             <h1>Marcus <br />Kamuntu</h1>

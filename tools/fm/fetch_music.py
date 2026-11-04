@@ -119,8 +119,7 @@ def same_artist(wanted, credited):
 
 
 def same_album(a, b):
-    a, b = norm(a or ""), norm(b or "")
-    return bool(a) and bool(b) and (a in b or b in a)
+    return bool(a) and norm(a) == norm(b or "")
 
 
 def apple_preview(t, artist):
@@ -230,7 +229,7 @@ def main():
         "stats": {
             "plays": lifetime["count"],
             "hours": round(lifetime["durationMs"] / 3.6e6),
-            "artists": (lifetime.get("cardinality") or {}).get("artists"),
+            "artists": lifetime["cardinality"]["artists"],  # fail here rather than publish a gap
         },
         "rotation": playable[:24],
         "artists": [{"name": i["artist"]["name"], "plays": i["streams"], "image": i["artist"].get("image")} for i in top_artists[:8]],

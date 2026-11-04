@@ -29,6 +29,10 @@ a:hover { color: var(--hot); }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; touch-action: manipulation; }
 :focus-visible { outline: 3px solid var(--hot); outline-offset: 2px; }
 
+.skip { position: absolute; left: 12px; top: -60px; z-index: 30; padding: 10px 14px; background: var(--ink); color: var(--paper); font-weight: 700; }
+.skip:focus { top: 8px; color: var(--paper); }
+main:focus { outline: none; }
+
 /* Masthead */
 
 .masthead { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 28px; }
@@ -108,8 +112,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .song img { width: 42px; height: 42px; flex: none; object-fit: cover; }
 .song em { display: block; font-style: normal; font-size: 12px; font-weight: 700; color: var(--hot); }
 .song b, .song span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.song a { min-width: 0; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.song a > span { min-width: 0; }
+.song a, .song-label { min-width: 0; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.song a > span, .song-label > span { min-width: 0; }
 .now-on b { font: 400 19px var(--display); margin-right: 6px; }
 .tuner-btns { display: flex; gap: 8px; align-self: center; }
 .tuner-btns button { padding: 6px 12px; border: 2px solid var(--ink); font-weight: 700; font-size: 14px; white-space: nowrap; }
@@ -192,6 +196,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 .wall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px 14px; margin-top: 28px; }
 .wall a { display: block; text-decoration: none; }
 .wall img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.wall li { min-width: 0; }
 .wall b { display: block; margin-top: 6px; font-size: 14px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wall span { display: block; font-size: 13px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rotation h3 { margin-top: 40px; font: 400 clamp(26px, 3vw, 40px)/1.05 var(--display); }

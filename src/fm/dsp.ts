@@ -146,22 +146,30 @@ export function decode(
   const yStep = LUMA / WIDTH;
   const cStep = CHROMA / (WIDTH / 2);
   const cr = new Float32Array(WIDTH), cb = new Float32Array(WIDTH);
+  const lineAt = (y: number) => y * LINE + Math.round(y * rx.skew) + DELAY;
 
-  for (let y = 0; y < HEIGHT; y++) {
-    const line = y * LINE + Math.round(y * rx.skew) + DELAY;
-
-    const chromaStart = line + SYNC + LUMA;
-    const target = y % 2 === 0 ? cr : cb;
+  // Chroma spans a pair of lines: red on the even line, blue on the odd one. Both have to
+  // be read before either row is drawn.
+  const readChroma = (y: number, target: Float32Array) => {
+    const start = lineAt(y) + SYNC + LUMA;
     for (let x = 0; x < WIDTH / 2; x++) {
-      const v = read(chromaStart + Math.round(x * cStep), Math.ceil(cStep)) - .5;
+      const v = read(start + Math.round(x * cStep), Math.ceil(cStep)) - .5;
       target[x * 2] = v; target[x * 2 + 1] = v;
     }
-    for (let x = 0; x < WIDTH; x++) {
-      const Y = read(line + SYNC + Math.round(x * yStep), Math.ceil(yStep));
-      const R = Y + 1.403 * cr[x], B = Y + 1.773 * cb[x];
-      const G = (Y - .299 * R - .114 * B) / .587;
-      const p = (y * WIDTH + x) * 4;
-      out[p] = R * 255; out[p + 1] = G * 255; out[p + 2] = B * 255; out[p + 3] = 255;
+  };
+
+  for (let pair = 0; pair < HEIGHT; pair += 2) {
+    readChroma(pair, cr);
+    readChroma(pair + 1, cb);
+    for (let y = pair; y < pair + 2; y++) {
+      const line = lineAt(y);
+      for (let x = 0; x < WIDTH; x++) {
+        const Y = read(line + SYNC + Math.round(x * yStep), Math.ceil(yStep));
+        const R = Y + 1.403 * cr[x], B = Y + 1.773 * cb[x];
+        const G = (Y - .299 * R - .114 * B) / .587;
+        const p = (y * WIDTH + x) * 4;
+        out[p] = R * 255; out[p + 1] = G * 255; out[p + 2] = B * 255; out[p + 3] = 255;
+      }
     }
   }
 }

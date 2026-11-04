@@ -68,6 +68,7 @@ async function prepare(s: Tx) {
   const c = canvas.getContext('2d', { willReadFrequently: true })!;
   c.drawImage(bmp, 0, 0, WIDTH, HEIGHT);
   s.pcm = encode(c.getImageData(0, 0, WIDTH, HEIGHT).data);
+  lastDecoded = -1; // the tuned station may have been waiting on this
 }
 
 ctx.onmessage = async ({ data }) => {
@@ -78,7 +79,8 @@ ctx.onmessage = async ({ data }) => {
     const order = [...stations].sort((a, b) => Math.abs(a.freq - tuned) - Math.abs(b.freq - tuned));
     pump();
     setInterval(rows, 55);
-    for (const s of order) await prepare(s);
+    // A station that fails to load stays off air; it must not take the others with it.
+    for (const s of order) await prepare(s).catch(() => {});
     ctx.postMessage({ type: 'ready' });
   } else if (data.type === 'tune') {
     tuned = data.freq;

@@ -11,6 +11,7 @@ let filter: BiquadFilterNode | null = null;
 let gain: GainNode | null = null;
 let now: Now | null = null;
 let current = '';
+let request = 0;
 const listeners = new Set<() => void>();
 
 // Previews held in memory, so pressing play never has to wait on the network.
@@ -92,7 +93,8 @@ export function play(next: Now, url: string) {
     el.src = ready.get(url) ?? url;
   }
   // Swapping songs quickly aborts the previous play(); only a real failure should stop the radio.
-  el.play().catch((e: DOMException) => { if (e.name !== 'AbortError') stop(); });
+  const mine = ++request;
+  el.play().catch((e: DOMException) => { if (e.name !== 'AbortError' && mine === request) stop(); });
   now = next;
   emit();
 }
