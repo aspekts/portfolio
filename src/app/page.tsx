@@ -1,39 +1,42 @@
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Projects from '@/components/Projects';
-import Experience from '@/components/Experience';
-import Contact from '@/components/Contact';
-import CustomCursor from '@/components/CustomCursor';
+import Receiver from '@/components/Receiver';
+import { Guide, NowBar, OffAir, Rotation, Shelf, Sign } from '@/components/Sections';
 
 export default function Home() {
   return (
-    <div className="bg-void min-h-dvh">
-      <CustomCursor />
-      <a
-        href="#about"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-void focus:px-4 focus:py-2 focus:rounded font-mono text-sm"
-      >
-        Skip to main content
-      </a>
-      <Navigation />
-      <main id="main-content">
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Contact />
+    <>
+      <a className="skip" href="#main">Skip to the receiver</a>
+      <header className="masthead">
+        <p className="logo">Aspekts</p>
+        <nav aria-label="Sections">
+          <a href="#guide">Work</a>
+          <a href="#shelf">Music</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="/assets/resume.pdf">CV</a>
+        </nav>
+      </header>
+
+      <main id="main" tabIndex={-1}>
+        <section className="receiver" aria-label="Aspekts FM receiver">
+          <div className="identity">
+            <h1>Marcus <br />Kamuntu</h1>
+            <p className="role">Software engineer and founder. I collect music and make things.</p>
+            <p className="intro">
+              Right now I&apos;m building Sendix, which helps SEND teams turn vague support plans into specific ones.
+              Everything else about me is on this dial.
+            </p>
+            <p className="hint"><b>Drag the dial below.</b> Press Listen: every station plays a different side of my music.</p>
+          </div>
+          <Receiver />
+        </section>
+
+        <Guide />
+        <Shelf />
+        <Rotation />
+        <OffAir />
       </main>
-      <footer className="px-8 py-8 border-t border-white/[0.06]">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <p className="font-mono text-[11px] text-white/25">
-            © {new Date().getFullYear()} Marcus Kamuntu
-          </p>
-          <p className="font-mono text-[11px] text-white/35">
-            aspekts.dev · built with Next.js, Tailwind, and a lot of ☕
-          </p>
-        </div>
-      </footer>
-    </div>
+      <Sign />
+      <NowBar />
+    </>
   );
 }
