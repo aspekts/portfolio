@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { discs } from '@/content/shelf';
 import { listening, stations } from '@/content/stations';
 import music from '@/content/music.generated.json';
-import { detune, getNow, play, stop, subscribe, type Now } from '@/fm/player';
+import { detune, getNow, play, preload, stop, subscribe, type Now } from '@/fm/player';
 import { useRotation } from '@/fm/rotation';
 
 type Song = (typeof music.dial)[keyof typeof music.dial];
@@ -43,6 +43,8 @@ export function Shelf() {
   const disc = discs.find((d) => d.id === open)!;
 
   useEffect(() => subscribe(() => setNow(getNow())), []);
+
+  useEffect(() => { if (disc.track) preload([disc.track.preview], { first: true }); }, [disc]);
 
   const playing = now?.owner === 'shelf' && now.id === disc.id;
 
@@ -141,12 +143,12 @@ export function OffAir() {
         <img src="/fm/marcus-full.jpg" alt="Marcus, seen from behind, walking across a garden under a wide grey sky" width={1200} height={1600} loading="lazy" />
         <div className="prose">
           <p>
-            I&apos;m Marcus. Ugandan, between London and Dundee, and in the final year of Computer Science and AI at the
-            University of Dundee.
+            I&apos;m Marcus. Ugandan, between London and Dundee, and in the final year of Computer Science (Data Science
+            and AI) at the University of Dundee, graduating in 2027.
           </p>
           <p>
-            I was Vice President of the Dundee University Computing Society from September 2025 to September 2026, and I
-            interned as an analyst at Zamara, a pension fund manager in Kampala, in summer 2024.
+            I was Vice President of the Dundee University Computing Society from September 2025 to September 2026, where
+            I ran a sold-out Quackathon 2026. In August 2024 I was a pension funds summer intern at Zamara in Kampala.
           </p>
           <p>When I&apos;m not building things I&apos;m go-karting, making something with my hands, or looking for music.</p>
         </div>
@@ -186,7 +188,7 @@ export function Sign() {
   return (
     <footer id="contact" className="sign">
       <h2>Get on air</h2>
-      <p className="big-link"><a href="mailto:home@aspekts.dev">home@aspekts.dev</a></p>
+      <p className="big-link"><a href="mailto:mail@aspekts.dev">mail@aspekts.dev</a></p>
       <ul>
         <li><a href="/assets/resume.pdf">CV</a></li>
         <li><a href="https://github.com/aspekts">GitHub</a></li>

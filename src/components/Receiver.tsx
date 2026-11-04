@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FRAME_SECONDS, HEIGHT, WIDTH } from '@/fm/dsp';
-import { detune, getNow, play, stop, subscribe, type Now } from '@/fm/player';
+import { detune, getNow, play, preload, stop, subscribe, type Now } from '@/fm/player';
 import { BAND, stations, type Station } from '@/content/stations';
 import music from '@/content/music.generated.json';
 import useLanyard from '@/hooks/useLanyard';
@@ -14,6 +14,7 @@ const LOCK = .03;
 const SNAP = .26;
 const START = 87.9;
 const SWIPE = 44;
+const NEARBY = 3;
 const INK = [10, 35, 216], HOT = [255, 59, 29], PAPER = [255, 212, 0];
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + .5) / 16);
 
@@ -51,6 +52,15 @@ export default function Receiver() {
   }, []);
 
   useEffect(() => subscribe(() => setNow(getNow())), []);
+
+  // All thirteen previews are about 14 MB. A desktop gets them once the page has settled;
+  // a phone gets the nearest few, and the rest only once someone has pressed Listen.
+  useEffect(() => {
+    const songs = stations.map((s) => songFor(s)?.preview).filter(Boolean) as string[];
+    const touch = matchMedia('(pointer: coarse)').matches;
+    const t = setTimeout(() => preload(touch ? songs.slice(0, NEARBY) : songs), 1200);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const worker = new Worker(new URL('../fm/receiver.worker.ts', import.meta.url));
@@ -200,6 +210,7 @@ export default function Receiver() {
     if (listening) { stop(); return; }
     const s = nearest(freqRef.current), t = songFor(s);
     if (t) play(asNow(s, t), t.preview);
+    preload(stations.map((x) => songFor(x)?.preview).filter(Boolean) as string[]);
   };
 
   const freqAt = (x: number) => {

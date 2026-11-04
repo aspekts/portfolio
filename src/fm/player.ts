@@ -10,7 +10,41 @@ let ctx: AudioContext | null = null;
 let filter: BiquadFilterNode | null = null;
 let gain: GainNode | null = null;
 let now: Now | null = null;
+let current = '';
 const listeners = new Set<() => void>();
+
+// Previews held in memory, so pressing play never has to wait on the network.
+const ready = new Map<string, string>();
+const queued = new Set<string>();
+const waiting: string[] = [];
+let fetching = 0;
+const PARALLEL = 2;
+
+function pump() {
+  while (fetching < PARALLEL && waiting.length) {
+    const url = waiting.shift()!;
+    fetching++;
+    fetch(url)
+      .then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(new Error(String(r.status)))))
+      .then((data) => { ready.set(url, URL.createObjectURL(new Blob([data], { type: 'audio/mp4' }))); })
+      .catch(() => { queued.delete(url); })
+      .finally(() => { fetching--; pump(); });
+  }
+}
+
+/** Data Saver and the slowest connections opt out: the song then just streams on play. */
+export function canPreload() {
+  const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  return !c?.saveData && !/2g/.test(c?.effectiveType ?? '');
+}
+
+export function preload(urls: string[], { first = false } = {}) {
+  if (!canPreload()) return;
+  const fresh = urls.filter((u) => !queued.has(u));
+  fresh.forEach((u) => queued.add(u));
+  if (first) waiting.unshift(...fresh); else waiting.push(...fresh);
+  pump();
+}
 
 const emit = () => listeners.forEach((fn) => fn());
 
@@ -19,6 +53,16 @@ function ensure() {
   audio = new Audio();
   audio.crossOrigin = 'anonymous';
   audio.loop = true;
+  // If a held copy will not play, fall back to streaming it.
+  audio.addEventListener('error', () => {
+    const blob = audio!.src;
+    const remote = [...ready].find(([, held]) => held === blob)?.[0];
+    if (!remote) return;
+    ready.delete(remote);
+    audio!.src = remote;
+    current = remote;
+    audio!.play().catch(() => stop());
+  });
   ctx = new AudioContext();
   filter = ctx.createBiquadFilter();
   filter.type = 'lowpass';
@@ -40,11 +84,12 @@ export const getNow = () => now;
 export function play(next: Now, url: string) {
   const el = ensure();
   ctx!.resume();
-  if (el.src !== url) {
+  if (current !== url) {
     gain!.gain.cancelScheduledValues(ctx!.currentTime);
     gain!.gain.setValueAtTime(0, ctx!.currentTime);
-    gain!.gain.linearRampToValueAtTime(LEVEL, ctx!.currentTime + .35);
-    el.src = url;
+    gain!.gain.linearRampToValueAtTime(LEVEL, ctx!.currentTime + .18);
+    current = url;
+    el.src = ready.get(url) ?? url;
   }
   // Swapping songs quickly aborts the previous play(); only a real failure should stop the radio.
   el.play().catch((e: DOMException) => { if (e.name !== 'AbortError') stop(); });
