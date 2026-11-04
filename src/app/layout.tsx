@@ -30,7 +30,7 @@ const personSchema = {
   alternateName: 'aspekts',
   url: 'https://aspekts.dev',
   jobTitle: 'Software Engineer and Founder',
-  email: 'mail@aspekts.dev',
+  email: 'home@aspekts.dev',
   sameAs: ['https://github.com/aspekts', 'https://linkedin.com/in/mkamuntu', 'https://www.instagram.com/7xmarcus/'],
   alumniOf: { '@type': 'EducationalOrganization', name: 'University of Dundee' },
 };

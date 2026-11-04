@@ -189,7 +189,7 @@ export function Sign() {
   return (
     <footer id="contact" className="sign">
       <h2>Get on air</h2>
-      <p className="big-link"><a href="mailto:mail@aspekts.dev">mail@aspekts.dev</a></p>
+      <p className="big-link"><a href="mailto:home@aspekts.dev">home@aspekts.dev</a></p>
       <ul>
         <li><a href="/assets/resume.pdf">CV</a></li>
         <li><a href="https://github.com/aspekts">GitHub</a></li>
