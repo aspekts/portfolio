@@ -1,0 +1,568 @@
+{
+ "dial": {
+  "marcus": {
+   "title": "sumnthin",
+   "artist": "redveil, D'mari Harris",
+   "album": "earth t0nes",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/3d/b8/4c3db852-389e-eb87-f5e7-08bcf474493f/155893.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/7c/67/08/7c670856-6aac-a882-e37d-d3e6e149bf32/mzaf_11136368701824376139.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 147692,
+   "link": "https://music.apple.com/gb/song/1716066249",
+   "plays": 7,
+   "source": "stats.fm",
+   "genre": "Alternative hip-hop"
+  },
+  "sendix": {
+   "title": "Loose",
+   "artist": "Daniel Caesar",
+   "album": "Freudian",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/62/f4/fd/62f4fde2-34a4-7f71-03c7-05d911b93e5a/859722261219_cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/9c/19/57/9c195759-ad20-ca09-372b-cc2193fa3b77/mzaf_18321038839598608157.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 185522,
+   "link": "https://music.apple.com/gb/song/1265894487",
+   "plays": 60,
+   "source": "stats.fm",
+   "genre": "R&B"
+  },
+  "ncr": {
+   "title": "The Mantra (Heat in the Street Freestyle)",
+   "artist": "Knucks",
+   "album": "The Mantra (Heat in the Street Freestyle)",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/99/5a/34995a75-79ce-fe94-3782-9f9ab3602893/cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cb/f5/a4/cbf5a4a7-74d7-094a-847e-807b5abb6bfd/mzaf_11220344542594956400.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 97714,
+   "link": "https://music.apple.com/gb/song/1586869686",
+   "plays": 23,
+   "source": "stats.fm",
+   "genre": "UK grime"
+  },
+  "yarn": {
+   "title": "A Night To Remember",
+   "artist": "beabadoobee, Laufey",
+   "album": "A Night To Remember",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/13/49/83/1349838e-b697-f484-e6d4-c7ef0976333a/196922666971_Cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/db/ec/2a/dbec2a7e-8984-eafe-892e-2f9ebb4fc940/mzaf_3593500613249666390.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 233388,
+   "link": "https://music.apple.com/gb/song/1710608813",
+   "plays": 56,
+   "source": "stats.fm",
+   "genre": "Bedroom pop"
+  },
+  "pollo": {
+   "title": "Learn to Fly",
+   "artist": "FKJ, Jordan Rakei",
+   "album": "Take Off",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/31/1d/6b/311d6b02-82e6-9a08-3178-5fbf7db9c1d6/cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/a6/23/e5/a623e504-e3d7-675a-cf9a-f261d00538fc/mzaf_723839595257123948.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 268170,
+   "link": "https://open.spotify.com/track/0IjCJNyvBcbC2XV2mwehuO",
+   "plays": 27,
+   "source": "stats.fm",
+   "genre": "Electronic"
+  },
+  "poeapi": {
+   "title": "Knot Me",
+   "artist": "Lucy Bedroque",
+   "album": "Fête de la Vanille",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/bc/0b/68/bc0b6820-5a89-15ad-96d9-f57b4f497c0f/cover_198885319161.jpg/300x300bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8e/6a/e3/8e6ae32d-5602-913f-f897-28e922f5332e/mzaf_16453242865361445183.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 244748,
+   "link": "https://music.apple.com/gb/album/knot-me/6774625417",
+   "plays": 15,
+   "source": "apple, verified",
+   "genre": "Hyperpop"
+  },
+  "goodcode": {
+   "title": "Why Did I Choose You",
+   "artist": "Marvin Gaye",
+   "album": "Vulnerable",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/96/32/aa/9632aa5f-7be3-12af-0ac9-27eb5d263156/00731453078628.rgb.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/29/01/a5/2901a553-06f8-c179-a09e-4850f2730de7/mzaf_11037591545854931171.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 159066,
+   "link": "https://music.apple.com/gb/song/1444223552",
+   "plays": 13,
+   "source": "stats.fm",
+   "genre": "Classic soul"
+  },
+  "unclaimed": {
+   "title": "Red",
+   "artist": "MF DOOM, Jay Electronica",
+   "album": "USEE4YOURSELF",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/21/b7/65/21b76588-dc74-9fec-33e8-ec4cbd0606e2/093624877066.jpg/300x300bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/42/34/b3/4234b337-b95d-8a99-04c9-c2085a130f3c/mzaf_2686685722158625978.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 255129,
+   "link": "https://music.apple.com/gb/album/red/1592373720",
+   "plays": 9,
+   "source": "apple, verified",
+   "genre": "Jazz rap"
+  },
+  "jotter": {
+   "title": "Que Bandeira",
+   "artist": "Evinha",
+   "album": "Cartão Postal",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/ba/dc/d4/badcd4b5-84b5-f765-76ba-06c0cb787eb7/18UMGIM61405.rgb.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8f/e1/06/8fe106b0-5f20-3bae-219e-809db85268a2/mzaf_6276176677445421100.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 149420,
+   "link": "https://music.apple.com/gb/song/1487008072",
+   "plays": 17,
+   "source": "stats.fm",
+   "genre": "Bossa nova"
+  },
+  "fluxfile": {
+   "title": "Luna, amore e no (From \"Amore mio aiutami\")",
+   "artist": "Piero Piccioni",
+   "album": "Romantic Strings",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8e/e2/f4/8ee2f4ae-ef75-4d8c-eddc-5c5217f6c125/romanticstrings.png/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/88/39/f4/8839f433-f7ed-d4b5-fd00-3ec76ecd3c42/mzaf_8197011616961358763.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 122067,
+   "link": "https://music.apple.com/gb/song/1564770843",
+   "plays": 45,
+   "source": "stats.fm",
+   "genre": "Italian film score"
+  },
+  "trackside": {
+   "title": "Night Tube",
+   "artist": "Zuko Rosemeid, Saiming",
+   "album": "Night Tube",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c7/99/ba/c799badd-38fb-245f-3590-45fac0df7c7b/artwork.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/8f/b8/0f/8fb80f40-1008-cae9-f62c-00cc49ade6f4/mzaf_541513378494981678.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 102400,
+   "link": "https://music.apple.com/gb/song/1617328270",
+   "plays": 29,
+   "source": "stats.fm",
+   "genre": "UK garage"
+  },
+  "recordbox": {
+   "title": "Falling Behind",
+   "artist": "Laufey",
+   "album": "Everything I Know About Love",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/a4/e7/5e/a4e75e8c-2875-4576-12d8-ac8d2f865815/5056167175841_1.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/ca/58/d5/ca58d52d-9ed7-cb94-f9f9-a4c06e22ac64/mzaf_3736343580268016802.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 173640,
+   "link": "https://music.apple.com/gb/song/1641540030",
+   "plays": 24,
+   "source": "stats.fm",
+   "genre": "Vocal jazz"
+  },
+  "workshop": {
+   "title": "Love Me Back",
+   "artist": "fromis_9",
+   "album": "Love Me Back (From \"Operation: True Love\")",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6d/86/83/6d868370-c3ed-f353-d35c-e813b8820cb9/191953309378.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/8e/48/41/8e484179-2910-c0e3-49bc-471621359b97/mzaf_16897432464807865545.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 186293,
+   "link": "https://music.apple.com/gb/song/1711158567",
+   "plays": 22,
+   "source": "stats.fm",
+   "genre": "K-pop"
+  }
+ },
+ "stats": {
+  "plays": 96493,
+  "hours": 4606,
+  "artists": 15899
+ },
+ "rotation": [
+  {
+   "title": "Mimi the Puppy",
+   "artist": "The Green Tea",
+   "album": "Heart in Motion",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music20/v4/1e/09/6c/1e096c0d-e3d0-e890-7ac3-3be84c1e7487/cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview30/v4/db/56/ad/db56adf7-3030-ddb6-aa62-3d47e4323bab/mzaf_1124079860013515803.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 232440,
+   "link": "https://music.apple.com/gb/song/1117410819",
+   "plays": 6
+  },
+  {
+   "title": "BLUE HOUR",
+   "artist": "Blush48",
+   "album": "SUNBLEACH",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/dd/56/8bdd5619-db66-487e-f1c6-f1437920231a/artwork.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7d/10/88/7d1088d5-06f3-8705-26ba-04909418911d/mzaf_5878908398724261671.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 97198,
+   "link": "https://music.apple.com/gb/song/6786667618",
+   "plays": 5
+  },
+  {
+   "title": "Green Light (feat. André 3000) - International Radio Edit",
+   "artist": "John Legend, André 3000",
+   "album": "Green Light (feat. André 3000)",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/76/69/84/766984c5-0cab-4ab5-c0af-84bced4295d8/886973700525.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5f/d8/d1/5fd8d103-3824-0f23-5916-7c4ff67831f6/mzaf_2631538085482966485.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 217546,
+   "link": null,
+   "plays": 4
+  },
+  {
+   "title": "The Comfort of a Laugh Track",
+   "artist": "Roar",
+   "album": "I'm Not Here to Make Friends",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/09/97/67/099767e2-c945-2f9a-3983-aaf43d78f7c3/859709552873_cover.tif/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/00/80/38/008038ca-368e-07ee-7918-97a63616c622/mzaf_10783705420014974453.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 292173,
+   "link": "https://music.apple.com/gb/song/599632061",
+   "plays": 4
+  },
+  {
+   "title": "Golden Boys",
+   "artist": "Res",
+   "album": "How I Do",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/45/16/8a/45168af0-2932-fb18-42ca-53ed3e67155f/06UMGIM21128.rgb.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2e/4f/6a/2e4f6ad3-6241-ff08-03fa-e0ee46763439/mzaf_9043015310362602561.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 278973,
+   "link": "https://music.apple.com/gb/song/1443929809",
+   "plays": 4
+  },
+  {
+   "title": "Cool Perc",
+   "artist": "RAKUNELAMA",
+   "album": "LUCHADOR - EP",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/03/73/1f/03731fa5-2b50-56ac-46ab-7c74269966a8/8800331135790_cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e3/72/f4/e372f4e4-14c8-1d02-2fe4-d963e4bc1f92/mzaf_286754834619556683.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 185293,
+   "link": "https://music.apple.com/gb/song/1831916229",
+   "plays": 4
+  },
+  {
+   "title": "Lady",
+   "artist": "Mista",
+   "album": "Mista",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/06/64/080664fe-a163-699f-dfa8-837cb0989ae1/mzi.yutrnvjl.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/1b/7d/46/1b7d467a-c728-3f2d-ddd4-de1730381f0b/mzaf_6878430971474049246.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 221867,
+   "link": "https://music.apple.com/gb/song/309590059",
+   "plays": 3
+  },
+  {
+   "title": "Fell in Love (Again)",
+   "artist": "Rafi Sudirman",
+   "album": "Scenery",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/46/04/4c/46044c7f-6c38-ce2d-d743-864e95f7cc1e/190296578274.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/50/be/51/50be5187-6322-bc63-6d6a-40e5ab96a04d/mzaf_5268248908738584680.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 201052,
+   "link": null,
+   "plays": 3
+  },
+  {
+   "title": "my lovin (mrbluejay)",
+   "artist": "baxxtrd",
+   "album": "my lovin (mrbluejay) - Single",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/cc/85/c7cc858e-2435-b3e5-6f17-63e81c100724/artwork.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/41/6e/42/416e4276-d352-426f-2691-1d679ae9bf17/mzaf_16735909462516489594.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 145380,
+   "link": "https://music.apple.com/gb/song/1885320940",
+   "plays": 3
+  },
+  {
+   "title": "Whiplash (feat. miyuriel)",
+   "artist": "tonytonychopper999",
+   "album": "Volbeats",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/9e/17/ab9e1710-0ae3-afaa-ee9a-b4743e682a98/artwork.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2b/bf/4b/2bbf4ba6-6bd4-a5af-821e-fcff9f89d6a9/mzaf_4796135660511329145.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 182152,
+   "link": "https://music.apple.com/gb/song/6805360713",
+   "plays": 3
+  },
+  {
+   "title": "Can't Let Go",
+   "artist": "Earth, Wind & Fire",
+   "album": "I Am",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/1a/99/d8/1a99d83b-8949-029b-302b-ec6b62689b4e/886443461536.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8f/cb/f0/8fcbf07f-bccf-82d2-88bb-023bde310dfd/mzaf_4940919734866679072.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 208693,
+   "link": "https://music.apple.com/gb/song/523223722",
+   "plays": 2
+  },
+  {
+   "title": "Margarita",
+   "artist": "Pharrell Williams, Sleepy Brown",
+   "album": "Mr. Brown",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/d1/3c/3f/d13c3f75-206c-f8fa-06c4-3a8b46a83140/00094637425657.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/56/72/40/5672406b-311d-1b8b-e21d-f38d2a07bcb6/mzaf_9000690565792363928.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 287240,
+   "link": "https://music.apple.com/gb/song/712335558",
+   "plays": 2
+  },
+  {
+   "title": "Starting Over Again",
+   "artist": "Natalie Cole",
+   "album": "Good To Be Back",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/68/ca/9c/68ca9cd8-5c43-7c82-e68c-f4c89375107d/18CRGIM05997.rgb.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5b/49/ba/5b49ba89-c272-a55b-d571-067df206704f/mzaf_10715696339937784474.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 253520,
+   "link": "https://open.spotify.com/track/40Syt8S53TbeflxJopZdKv",
+   "plays": 2
+  },
+  {
+   "title": "It Had To Be You",
+   "artist": "Frank Sinatra",
+   "album": "Trilogy: Past, Present & Future",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/71/45/df/7145df87-a85f-9307-e0b2-cced10a3f74e/00602577610516.rgb.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a6/ee/f6/a6eef62d-081b-c055-728d-5fbbc2ff0eea/mzaf_3145306697399808630.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 234666,
+   "link": "https://open.spotify.com/track/5XrKrD0AjiZwtkPSRf3NTM",
+   "plays": 2
+  },
+  {
+   "title": "seasons",
+   "artist": "wave to earth",
+   "album": "summer flows 0.02",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/1d/b2/a1/1db2a1fe-2327-e014-c7be-82f9eeea4f8d/5054197890017.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/77/95/26/779526d8-f162-615c-27ce-4c9e2bc4b89a/mzaf_8057369600317230241.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 255998,
+   "link": null,
+   "plays": 2
+  },
+  {
+   "title": "American Dream",
+   "artist": "Piero Piccioni",
+   "album": "Anastasia mio fratello (Original Motion Picture Soundtrack)",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/1c/8d/bc/mzi.kslzmryc.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview71/v4/f8/a0/e4/f8a0e4d9-60fa-fd90-0644-4af7cafba102/mzaf_6282896490166668946.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 70750,
+   "link": "https://music.apple.com/gb/song/388521828",
+   "plays": 2
+  },
+  {
+   "title": "One Summer's Day - from 'Spirited Away'",
+   "artist": "London Philharmonic Orchestra, Music Lab Collective",
+   "album": "One Summer's Day (from 'Spirited Away')",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/a8/a6/08/a8a6084a-aabf-abb4-1255-a95a9280e6b9/dj.enfnpjaf.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/87/1a/79/871a794a-f92b-ea94-6291-ee340ddb770d/mzaf_14462415215446703683.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 242373,
+   "link": "https://open.spotify.com/track/1RQIsYl31BghwNTvu6HcLw",
+   "plays": 2
+  },
+  {
+   "title": "Hero (feat. Josey Scott)",
+   "artist": "Chad Kroeger",
+   "album": "Spider-Man (Music from and Inspired By)",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/4d/59/58/mzi.cvdbdywu.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/Music49/v4/57/d8/f3/57d8f325-9fff-1714-0d11-b72a79a69b18/mzaf_2007999825209115673.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 199027,
+   "link": "https://music.apple.com/gb/song/219080797",
+   "plays": 2
+  },
+  {
+   "title": "미행 (그림자 : Shadow)",
+   "artist": "f(x)",
+   "album": "The 2nd Album 'Pink Tape'",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/90/05/84/9005841d-8b2a-a266-af60-309f31ba40d8/f_x_02_web.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a2/c0/3f/a2c03f0b-23a8-c60e-7c33-1642ca0097d8/mzaf_6692235238270192302.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 210287,
+   "link": "https://music.apple.com/gb/song/905856944",
+   "plays": 2
+  },
+  {
+   "title": "Green Tea",
+   "artist": "The Green Tea",
+   "album": "Heart in Motion",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music20/v4/1e/09/6c/1e096c0d-e3d0-e890-7ac3-3be84c1e7487/cover.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/08/0b/dc/080bdcb2-83a8-e836-62a3-5eb69b131adc/mzaf_12769691468436600144.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 247666,
+   "link": "https://music.apple.com/gb/song/1117410805",
+   "plays": 2
+  },
+  {
+   "title": "Kiss Of Life",
+   "artist": "Giovanca, Benny Sings",
+   "album": "Kiss Of Life",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9f/fb/f9/9ffbf991-b876-e032-b734-83964104bc66/00044002408747.rgb.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview128/v4/3e/e1/a8/3ee1a841-6d7c-713c-48fc-dfa1c022650c/mzaf_1738457042651965350.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 292853,
+   "link": "https://music.apple.com/gb/song/1445038447",
+   "plays": 2
+  },
+  {
+   "title": "Don't Take the Night Away",
+   "artist": "Chris Rainbow",
+   "album": "White Trails (Expanded)",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/13/54/2c/13542c3b-1d1b-714c-2537-fea6a7c4f632/190295612467.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/9c/1a/b5/9c1ab5d4-b3d1-062a-1881-3a0c2be9e6b4/mzaf_9524810105113204473.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 288466,
+   "link": "https://music.apple.com/gb/song/1397444058",
+   "plays": 9
+  },
+  {
+   "title": "White Trails",
+   "artist": "Chris Rainbow",
+   "album": "White Trails (Expanded)",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/13/54/2c/13542c3b-1d1b-714c-2537-fea6a7c4f632/190295612467.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/81/f0/d0/81f0d076-d6fb-629e-2182-15dcccb4cabc/mzaf_6148216540059198464.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 355560,
+   "link": "https://music.apple.com/gb/song/1397444065",
+   "plays": 9
+  },
+  {
+   "title": "What's Goin' On",
+   "artist": "Tony Thompson, Tony Thompson",
+   "album": "Sexsational",
+   "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/f7/61/08/mzi.tlofylxa.jpg/768x768bb.jpg",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/31/1b/88/311b882b-1836-09b7-3c20-8df3bc9948bb/mzaf_9616517475172368665.plus.aac.p.m4a",
+   "explicit": false,
+   "ms": 258093,
+   "link": "https://music.apple.com/gb/song/357824059",
+   "plays": 8
+  }
+ ],
+ "artists": [
+  {
+   "name": "redveil",
+   "plays": 1920,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebb643474b62ac4479a65bece3"
+  },
+  {
+   "name": "Piero Piccioni",
+   "plays": 1285,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebdd9c371428da68927911ab51"
+  },
+  {
+   "name": "Logic",
+   "plays": 1001,
+   "image": "https://i.scdn.co/image/ab6761610000e5eb4309e7be1610df9a1fd34793"
+  },
+  {
+   "name": "Tyler, The Creator",
+   "plays": 984,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebdf2728294ff77dd11eeb18fb"
+  },
+  {
+   "name": "Daniel Caesar",
+   "plays": 941,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebe4d94f7cbebb17504c25d419"
+  },
+  {
+   "name": "JPEGMAFIA",
+   "plays": 579,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebb37aa35eec6d83fe18e48e73"
+  },
+  {
+   "name": "Laufey",
+   "plays": 574,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebc751deb23ed62e7cadfb669a"
+  },
+  {
+   "name": "emawk",
+   "plays": 562,
+   "image": "https://i.scdn.co/image/ab6761610000e5ebe4c008b27fb534cf38cc86d6"
+  }
+ ],
+ "cds": {
+  "melt": {
+   "album": "Melt My Eyez See Your Future",
+   "albumArtist": "Denzel Curry",
+   "albumUrl": "https://music.apple.com/gb/album/melt-my-eyez-see-your-future/1613566792",
+   "title": "The Smell Of Death",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/43/d2/c3/43d2c365-72b7-10d0-ea00-8aaf168af427/mzaf_816834499137010224.plus.aac.p.m4a",
+   "myPlays": 17
+  },
+  "sankofa": {
+   "album": "sankofa",
+   "albumArtist": "redveil",
+   "albumUrl": "https://music.apple.com/gb/album/sankofa/1884734946",
+   "title": "history",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bd/09/93/bd099369-c061-431d-14b1-48e000f23396/mzaf_8361781585634593318.plus.aac.p.m4a",
+   "myPlays": 14
+  },
+  "wgo": {
+   "album": "What's Going On",
+   "albumArtist": "Marvin Gaye",
+   "albumUrl": "https://music.apple.com/gb/album/whats-going-on/1538081586",
+   "title": "God Is Love",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c7/23/f3/c723f324-93d3-b1fd-9432-b6818f22a6d5/mzaf_2323604111005089363.plus.aac.p.m4a",
+   "myPlays": 2
+  },
+  "hoes": {
+   "album": "SCARING THE HOES",
+   "albumArtist": "JPEGMAFIA & Danny Brown",
+   "albumUrl": "https://music.apple.com/gb/album/scaring-the-hoes/1676166971",
+   "title": "Lean Beef Patty",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/11/00/0e/11000ebc-b2e4-7638-573c-d05eef133b3e/mzaf_8160321150288836867.plus.aac.p.m4a",
+   "myPlays": 39
+  },
+  "spergy": {
+   "album": "Son Of Spergy",
+   "albumArtist": "Daniel Caesar",
+   "albumUrl": "https://music.apple.com/gb/album/son-of-spergy/1861540133",
+   "title": "Have A Baby (With Me)",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/92/a7/3a/92a73a37-cfe2-afcb-b47f-715dc5a223a8/mzaf_4219354857572585269.plus.aac.p.m4a",
+   "myPlays": 5
+  },
+  "nine": {
+   "album": "9",
+   "albumArtist": "Damien Rice",
+   "albumUrl": "https://music.apple.com/gb/album/9/203046247",
+   "title": "9 Crimes",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ed/2d/b0/ed2db0c8-b4e1-b565-8593-018b705947f7/mzaf_14288129960831950684.plus.aac.p.m4a",
+   "myPlays": 0
+  },
+  "demon": {
+   "album": "Demon Days",
+   "albumArtist": "Gorillaz",
+   "albumUrl": "https://music.apple.com/gb/album/demon-days/850571319",
+   "title": "Dirty Harry (feat. Bootie Brown)",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/98/41/64/984164c9-72b6-b4f7-a668-dff684d73e3e/mzaf_15845482980303545922.plus.aac.p.m4a",
+   "myPlays": 0
+  },
+  "ftbyh": {
+   "album": "Friends That Break Your Heart",
+   "albumArtist": "James Blake",
+   "albumUrl": "https://music.apple.com/gb/album/friends-that-break-your-heart/1576612480",
+   "title": "Famous Last Words",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1d/73/48/1d73487a-8e5a-b34d-fb3e-a439c2fc863f/mzaf_12699918904656310214.plus.aac.p.m4a",
+   "myPlays": 16
+  },
+  "bewitched": {
+   "album": "Bewitched: The Goddess Edition",
+   "albumArtist": "Laufey",
+   "albumUrl": "https://music.apple.com/gb/album/bewitched-the-goddess-edition/1727030380",
+   "title": "Promise",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cd/f6/21/cdf621c6-2d57-e1f4-35fd-19f0f63f5808/mzaf_16816765013878640661.plus.aac.p.m4a",
+   "myPlays": 19
+  },
+  "poster": {
+   "album": "Posterboy - EP",
+   "albumArtist": "Charlie Bennett",
+   "albumUrl": "https://music.apple.com/gb/album/posterboy-ep/1839406491",
+   "title": "Four Leaf Clover",
+   "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/84/79/6c/84796cb7-8d80-cc70-0045-79622b852580/mzaf_12638592368108359113.plus.aac.p.m4a",
+   "myPlays": 0
+  }
+ }
+}

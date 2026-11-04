@@ -37,3 +37,7 @@ next-env.d.ts
 
 # Vercel
 .vercel
+
+# Apple lookup cache
+tools/fm/.itunes-cache.json
+__pycache__/
