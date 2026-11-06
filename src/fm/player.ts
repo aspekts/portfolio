@@ -18,6 +18,7 @@ const listeners = new Set<() => void>();
 const ready = new Map<string, string>();
 const queued = new Set<string>();
 const waiting: string[] = [];
+const finished = new Set<string>(); // released while playing, freed when the song changes
 let fetching = 0;
 const PARALLEL = 2;
 
@@ -27,7 +28,9 @@ function pump() {
     fetching++;
     fetch(url)
       .then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(new Error(String(r.status)))))
-      .then((data) => { ready.set(url, URL.createObjectURL(new Blob([data], { type: 'audio/mp4' }))); })
+      .then((data) => {
+        if (queued.has(url)) ready.set(url, URL.createObjectURL(new Blob([data], { type: 'audio/mp4' })));
+      })
       .catch(() => { queued.delete(url); })
       .finally(() => { fetching--; pump(); });
   }
@@ -39,14 +42,22 @@ export function canPreload() {
   return !c?.saveData && !/2g/.test(c?.effectiveType ?? '');
 }
 
+function free(url: string) {
+  const held = ready.get(url);
+  if (held) URL.revokeObjectURL(held);
+  ready.delete(url);
+  queued.delete(url);
+  const i = waiting.indexOf(url);
+  if (i >= 0) waiting.splice(i, 1);
+}
+
 /** Let go of a preview that will not be needed again. Live songs would otherwise pile up. */
 export function release(url: string) {
-  const held = ready.get(url);
-  if (held && current !== url) {
-    URL.revokeObjectURL(held);
-    ready.delete(url);
-  }
-  if (current !== url) queued.delete(url);
+  if (current === url) finished.add(url); else free(url);
+}
+
+function moved() {
+  finished.forEach((url) => { if (url !== current) { free(url); finished.delete(url); } });
 }
 
 export function preload(urls: string[], { first = false } = {}) {
@@ -101,7 +112,9 @@ export function play(next: Now, url: string) {
     gain!.gain.setValueAtTime(0, ctx!.currentTime);
     gain!.gain.linearRampToValueAtTime(LEVEL, ctx!.currentTime + .18);
     current = url;
+    finished.delete(url);
     el.src = ready.get(url) ?? url;
+    moved();
   }
   // Swapping songs quickly aborts the previous play(); only a real failure should stop the radio.
   const mine = ++request;
@@ -117,6 +130,7 @@ export function hush(next: Now) {
   request++; // a late failure from the song before must not switch the radio off
   el.pause();
   current = '';
+  moved();
   now = next;
   emit();
 }
