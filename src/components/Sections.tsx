@@ -19,6 +19,7 @@ export function Guide() {
           <li key={s.id}>
             <button type="button" className="tune" onClick={() => window.dispatchEvent(new CustomEvent('fm:tune', { detail: s.freq }))} aria-label={`Tune to ${s.name}`}>
               {s.freq.toFixed(1)}
+              <small>Tune</small>
             </button>
             <div>
               <h3>{s.name}</h3>

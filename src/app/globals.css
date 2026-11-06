@@ -161,6 +161,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   border-bottom: 1px solid var(--ink);
 }
 .tune { justify-self: start; padding: 4px 6px; border: 2px solid var(--ink); font: 900 30px/1 var(--dots); text-align: left; white-space: nowrap; }
+.tune small { display: block; margin-top: 4px; font: 800 11.5px/1 var(--text); letter-spacing: .08em; text-transform: uppercase; }
 .tune:hover { background: var(--ink); color: var(--white); }
 .guide h3 { font: 400 20px/1.15 var(--display); }
 .format { font-size: 14px; font-weight: 600; }
@@ -256,21 +257,23 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 @media (max-width: 860px) {
   .masthead { gap: 8px; padding: 2px max(16px, env(safe-area-inset-right)) 2px max(16px, env(safe-area-inset-left)); }
   .logo { font-size: clamp(25px, 7.4vw, 32px); white-space: nowrap; }
-  .masthead nav { gap: clamp(2px, 1vw, 12px); font-size: clamp(12.5px, 3.5vw, 15px); }
-  .masthead nav a { display: flex; align-items: center; min-height: 44px; padding: 0 clamp(2px, .8vw, 6px); }
+  .masthead nav { gap: 0; font-size: clamp(12.5px, 3.5vw, 15px); }
+  .masthead nav a { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 clamp(2px, .8vw, 6px); }
+  /* The last link takes the page margin, so its target reaches the screen edge. */
+  .masthead nav a:last-child { justify-content: flex-start; margin-right: -16px; }
 
   .receiver { display: block; height: auto; min-height: 0; padding: 0 16px 16px; }
   .identity { max-width: none; }
   .identity h1 { font-size: clamp(25px, 7.9vw, 68px); line-height: 1; }
   .identity h1 br { display: none; }
   .role { margin-top: 5px; font-size: clamp(15px, 4.4vw, 22px); }
-  .intro { margin-top: 6px; font-size: 14.5px; line-height: 1.35; max-width: 60ch; }
-  .hint { margin-top: 6px; font-size: 13px; line-height: 1.3; }
+  .intro { margin-top: 9px; font-size: 14.5px; line-height: 1.35; max-width: 60ch; }
+  .hint { margin-top: 9px; font-size: 13px; line-height: 1.3; }
   .hint b { padding: 1px 5px; }
 
   /* Tall enough to fill the screen, never so tall that the dial falls off the bottom. */
   .screen-wrap { container-type: normal; margin-top: 10px; }
-  .screen, .rds { width: min(100%, 560px, calc((100svh - 498px) * 4 / 3)); min-width: min(100%, 220px); }
+  .screen, .rds { width: min(100%, 560px, calc((100svh - 504px) * 4 / 3)); min-width: min(100%, 220px); }
   .screen { border-width: 4px; }
   .rds { min-height: 50px; padding: 5px 10px; gap: 10px; }
   .rds-ps { font-size: clamp(20px, 6vw, 28px); }
@@ -294,6 +297,13 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 
   /* Thirteen ticks cannot be tapped, so the stations become a rail the thumb can scroll. */
   .stops { display: flex; gap: 2px; height: auto; margin: 4px -16px 0; padding: 0 16px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .stops {
+    --fade-start: 24px; --fade-end: 24px;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+  }
+  .stops.at-start { --fade-start: 0px; }
+  .stops.at-end { --fade-end: 0px; }
   .stops::-webkit-scrollbar { display: none; }
   .stops li { position: static; transform: none; flex: none; scroll-snap-align: center; }
   .stops button { display: grid; align-content: center; min-width: 74px; min-height: 48px; padding: 4px 8px; text-align: center; border-bottom: 3px solid transparent; }
@@ -306,6 +316,11 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .lede { font-size: 16.5px; }
   .guide li { grid-template-columns: 82px minmax(0, 1fr); padding: 12px 0; }
   .tune { font-size: 21px; min-height: 44px; padding-inline: 5px; }
+  .tune small { font-size: 11px; margin-top: 3px; }
+  .big-link a { display: inline-block; padding-block: 11px; }
+  .heavy { display: block; margin-top: 20px; font-size: 16px; }
+  .heavy li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-top: 1px solid currentColor; }
+  .heavy small { font-size: 14px; font-variant-numeric: tabular-nums; }
   .body { grid-column: 1 / -1; }
 
   /* The disc stays on screen while the row of covers scrolls underneath it. */
@@ -333,7 +348,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 /* The shortest phones: the hint goes first, then picture height, so the rail stays on screen. */
 @media (max-width: 860px) and (max-height: 700px) and (orientation: portrait) {
   .hint { display: none; }
-  .screen, .rds { width: min(100%, calc((100svh - 452px) * 4 / 3)); min-width: 160px; }
+  .screen, .rds { width: min(100%, calc((100svh - 455px) * 4 / 3)); min-width: 160px; }
   .rds { min-height: 40px; }
   .band { height: 56px; }
 }
@@ -345,7 +360,10 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 }
 
 @media (max-width: 360px) {
+  .masthead nav a { min-width: 40px; }
   .song img { width: 36px; height: 36px; }
+  .nowbar img { width: 36px; height: 36px; }
+  .nowbar button { padding: 0 10px; }
   .tuner-btns button { padding: 0 10px; font-size: 13.5px; }
 }
 

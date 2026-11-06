@@ -254,6 +254,23 @@ export default function Receiver() {
     preload(stations.map((x) => songFor(x)?.preview).filter(Boolean) as string[]);
   };
 
+  // The rail fades at whichever end has more stations past it.
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const edges = () => {
+      rail.classList.toggle('at-start', rail.scrollLeft < 4);
+      rail.classList.toggle('at-end', rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 4);
+    };
+    edges();
+    rail.addEventListener('scroll', edges, { passive: true });
+    window.addEventListener('resize', edges);
+    return () => {
+      rail.removeEventListener('scroll', edges);
+      window.removeEventListener('resize', edges);
+    };
+  }, []);
+
   const freqAt = (x: number) => {
     const r = dialRef.current!.getBoundingClientRect();
     return BAND.low + ((x - r.left) / r.width) * (BAND.high - BAND.low);
@@ -263,8 +280,8 @@ export default function Receiver() {
   // it is, at half speed, and a plain tap jumps.
   const onPointer = (e: React.PointerEvent) => {
     const down = e.type === 'pointerdown';
-    if (down) dialRef.current!.setPointerCapture(e.pointerId);
     if (e.pointerType === 'mouse') {
+      if (down) dialRef.current!.setPointerCapture(e.pointerId);
       if (down || e.buttons) tune(freqAt(e.clientX));
       return;
     }
@@ -282,6 +299,13 @@ export default function Receiver() {
     if (t && !t.moved) tune(freqAt(e.clientX));
     const f = freqRef.current, s = nearest(f);
     if (Math.abs(s.freq - f) < SNAP) tune(s.freq, true);
+  };
+
+  // The browser took the gesture for a page scroll, so undo any drift it left on the dial.
+  const cancelTouch = () => {
+    const t = touchRef.current;
+    touchRef.current = null;
+    if (t?.moved) tune(t.f, true);
   };
 
   const onScreenDown = (e: React.PointerEvent) => { swipeRef.current = { x: e.clientX, y: e.clientY }; };
@@ -365,14 +389,14 @@ export default function Receiver() {
           onPointerDown={onPointer}
           onPointerMove={onPointer}
           onPointerUp={release}
-          onPointerCancel={() => { touchRef.current = null; }}
+          onPointerCancel={cancelTouch}
           onKeyDown={onKey}
         >
           <canvas ref={bandRef} aria-hidden="true" />
           <div className="needle" ref={needleRef} style={{ left: `${pct(START)}%` }} aria-hidden="true" />
         </div>
 
-        <ol className="stops" ref={railRef}>
+        <ol className="stops at-start" ref={railRef}>
           {stations.map((s) => (
             <li key={s.id} style={{ left: `${pct(s.freq)}%` }}>
               <button type="button" className={[station?.id === s.id && 'active', s.live && (onAirNow.on ? 'is-live' : 'is-quiet')].filter(Boolean).join(' ')} onClick={() => tune(s.freq, true)} aria-label={`Tune to ${s.name}, ${s.freq} megahertz`}>
