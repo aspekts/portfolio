@@ -39,6 +39,16 @@ export function canPreload() {
   return !c?.saveData && !/2g/.test(c?.effectiveType ?? '');
 }
 
+/** Let go of a preview that will not be needed again. Live songs would otherwise pile up. */
+export function release(url: string) {
+  const held = ready.get(url);
+  if (held && current !== url) {
+    URL.revokeObjectURL(held);
+    ready.delete(url);
+  }
+  if (current !== url) queued.delete(url);
+}
+
 export function preload(urls: string[], { first = false } = {}) {
   if (!canPreload()) return;
   const fresh = urls.filter((u) => !queued.has(u));
@@ -62,7 +72,8 @@ function ensure() {
     ready.delete(remote);
     audio!.src = remote;
     current = remote;
-    audio!.play().catch(() => stop());
+    const mine = ++request;
+    audio!.play().catch(() => { if (mine === request) stop(); });
   });
   ctx = new AudioContext();
   filter = ctx.createBiquadFilter();
@@ -103,6 +114,7 @@ export function play(next: Now, url: string) {
 export function hush(next: Now) {
   const el = ensure();
   ctx!.resume();
+  request++; // a late failure from the song before must not switch the radio off
   el.pause();
   current = '';
   now = next;
@@ -110,6 +122,7 @@ export function hush(next: Now) {
 }
 
 export function stop() {
+  request++;
   audio?.pause();
   now = null;
   emit();

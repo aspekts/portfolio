@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FRAME_SECONDS, HEIGHT, WIDTH } from '@/fm/dsp';
-import { detune, getNow, hush, play, preload, stop, subscribe, type Now } from '@/fm/player';
+import { detune, getNow, hush, play, preload, release as releasePreview, stop, subscribe, type Now } from '@/fm/player';
 import { useLive, type Live } from '@/fm/live';
 import { BAND, stations, type Station } from '@/content/stations';
 import music from '@/content/music.generated.json';
@@ -24,7 +24,11 @@ const songFor = (s: Station) => (music.dial as Record<string, Song>)[s.id];
 
 /** What a station has to play. On Air changes under the dial; the rest are fixed. */
 const trackFor = (s: Station, live: Live) => (s.live ? (live.on ? live.track : null) : songFor(s));
-const keyFor = (s: Station, live: Live) => (s.live ? `onair:${live.on ? live.track?.title : ''}` : s.id);
+const keyFor = (s: Station, live: Live) => {
+  if (!s.live) return s.id;
+  const t = live.on ? live.track : null;
+  return `onair:${t?.ids[0] ?? t?.title ?? ''}:${t?.preview ?? ''}`;
+};
 
 function tuneIn(s: Station, live: Live) {
   const t = trackFor(s, live);
@@ -138,6 +142,8 @@ export default function Receiver() {
         drawRow(data.rows);
       } else if (data.type === 'ready') {
         settled = true;
+      } else if (data.type === 'live-ready') {
+        printed = false; // the still band has to show the station appearing or leaving
       }
     };
 
@@ -218,7 +224,11 @@ export default function Receiver() {
   const cover = onAirNow.on ? onAirNow.track?.cover ?? null : null;
   const preview = onAirNow.on ? onAirNow.track?.preview : null;
   useEffect(() => { workerRef.current?.postMessage({ type: 'live', cover }); }, [cover]);
-  useEffect(() => { if (preview) preload([preview], { first: true }); }, [preview]);
+  useEffect(() => {
+    if (!preview) return;
+    preload([preview], { first: true });
+    return () => releasePreview(preview);
+  }, [preview]);
 
   useEffect(() => {
     const rail = railRef.current;

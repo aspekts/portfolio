@@ -10,6 +10,8 @@ const FFT = 256;
 const BINS = 80;
 const WINDOWS = 6;
 const BURST_MS = 1100;
+const COVER_TRIES = 3;
+const COVER_RETRY_MS = 4000;
 
 let stations: Tx[] = [];
 let tuned = 87.9;
@@ -90,15 +92,20 @@ async function prepare(s: Tx) {
   lastDecoded = -1; // the tuned station may have been waiting on this
 }
 
-async function goLive(cover: string | null) {
+async function goLive(cover: string | null, tries = COVER_TRIES) {
   liveCover = cover;
   const tx = stations.find((s) => !s.src);
   if (!tx) return;
   const pcm = cover ? await picture(cover, true).catch(() => undefined) : undefined;
   if (cover !== liveCover) return; // the song has already changed again
+  if (cover && !pcm && tries > 1) {
+    setTimeout(() => { if (cover === liveCover) goLive(cover, tries - 1); }, COVER_RETRY_MS);
+    return;
+  }
   tx.pcm = pcm;
   if (pcm && !still) burstUntil = Date.now() + BURST_MS;
   lastDecoded = -1;
+  ctx.postMessage({ type: 'live-ready' });
 }
 
 ctx.onmessage = async ({ data }) => {
