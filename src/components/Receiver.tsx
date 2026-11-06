@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FRAME_SECONDS, HEIGHT, WIDTH } from '@/fm/dsp';
-import { detune, getNow, play, preload, stop, subscribe, type Now } from '@/fm/player';
+import { detune, getNow, hush, play, preload, stop, subscribe, type Now } from '@/fm/player';
+import { useLive, type Live } from '@/fm/live';
 import { BAND, stations, type Station } from '@/content/stations';
 import music from '@/content/music.generated.json';
-import useLanyard from '@/hooks/useLanyard';
 
 const BINS = 80;
 const CELL = 2;
@@ -21,7 +21,16 @@ const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => 
 const pct = (f: number) => ((f - BAND.low) / (BAND.high - BAND.low)) * 100;
 type Song = (typeof music.dial)[keyof typeof music.dial];
 const songFor = (s: Station) => (music.dial as Record<string, Song>)[s.id];
-const asNow = (s: Station, t: Song): Now => ({ owner: 'radio', id: s.id, title: t.title, artist: t.artist, cover: t.cover });
+
+/** What a station has to play. On Air changes under the dial; the rest are fixed. */
+const trackFor = (s: Station, live: Live) => (s.live ? (live.on ? live.track : null) : songFor(s));
+const keyFor = (s: Station, live: Live) => (s.live ? `onair:${live.on ? live.track?.title : ''}` : s.id);
+
+function tuneIn(s: Station, live: Live) {
+  const t = trackFor(s, live);
+  const now: Now = { owner: 'radio', id: keyFor(s, live), title: t?.title ?? 'Off air', artist: t?.artist ?? 'Nothing playing right now', cover: t?.cover };
+  if (t?.preview) play(now, t.preview); else hush(now);
+}
 
 const nearest = (f: number) => stations.reduce((a, b) => (Math.abs(b.freq - f) < Math.abs(a.freq - f) ? b : a));
 
@@ -39,7 +48,10 @@ export default function Receiver() {
   const [live, setLive] = useState(false);
   const [now, setNow] = useState<Now | null>(null);
   const [line, setLine] = useState(0);
-  const { spotifyPresence: song } = useLanyard();
+  const onAirNow = useLive();
+  const liveRef = useRef<Live>(onAirNow);
+  liveRef.current = onAirNow;
+  const workerRef = useRef<Worker | null>(null);
   const railRef = useRef<HTMLOListElement>(null);
   const touchRef = useRef<{ x: number; f: number; moved: boolean } | null>(null);
   const swipeRef = useRef<number | null>(null);
@@ -64,6 +76,7 @@ export default function Receiver() {
 
   useEffect(() => {
     const worker = new Worker(new URL('../fm/receiver.worker.ts', import.meta.url));
+    workerRef.current = worker;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const screen = screenRef.current!.getContext('2d')!;
@@ -131,7 +144,8 @@ export default function Receiver() {
     worker.postMessage({
       type: 'init',
       freq: START,
-      stations: stations.map((s) => ({ id: s.id, freq: s.freq, src: `/fm/${s.id}.png` })),
+      still: reduced,
+      stations: stations.map((s) => ({ id: s.id, freq: s.freq, src: s.live ? undefined : `/fm/${s.id}.png` })),
     });
 
     // The dial, the readout and the music follow one loop, so React only sees station changes.
@@ -168,9 +182,10 @@ export default function Receiver() {
       const playing = getNow();
       if (playing?.owner === 'radio') {
         // Only change song once the dial has settled, not for every station it sweeps past.
-        if (playing.id !== s.id && off < SNAP) {
-          if (held !== s.id) { held = s.id; heldAt = performance.now(); }
-          else if (performance.now() - heldAt > 180) { const t = songFor(s); if (t) play(asNow(s, t), t.preview); else stop(); }
+        const key = keyFor(s, liveRef.current);
+        if (playing.id !== key && off < SNAP) {
+          if (held !== key) { held = key; heldAt = performance.now(); }
+          else if (performance.now() - heldAt > 180) tuneIn(s, liveRef.current);
         }
         detune(Math.min(1, off / .42));
       }
@@ -199,6 +214,12 @@ export default function Receiver() {
     };
   }, [tune]);
 
+  // The live song goes out over the air, and its preview is made ready ahead of the tune-in.
+  const cover = onAirNow.on ? onAirNow.track?.cover ?? null : null;
+  const preview = onAirNow.on ? onAirNow.track?.preview : null;
+  useEffect(() => { workerRef.current?.postMessage({ type: 'live', cover }); }, [cover]);
+  useEffect(() => { if (preview) preload([preview], { first: true }); }, [preview]);
+
   useEffect(() => {
     const rail = railRef.current;
     const active = rail?.querySelector<HTMLElement>('button.active');
@@ -219,8 +240,7 @@ export default function Receiver() {
 
   const toggleListen = () => {
     if (listening) { stop(); return; }
-    const s = nearest(freqRef.current), t = songFor(s);
-    if (t) play(asNow(s, t), t.preview);
+    tuneIn(nearest(freqRef.current), liveRef.current);
     preload(stations.map((x) => songFor(x)?.preview).filter(Boolean) as string[]);
   };
 
@@ -275,8 +295,12 @@ export default function Receiver() {
     if (e.key === 'PageUp' || e.key === 'PageDown') { e.preventDefault(); seek(e.key === 'PageUp' ? 1 : -1); }
   };
 
-  const rt = station ? [...(station.id === 'recordbox' && song ? [`NOW ${song.song} - ${song.artist}`.toUpperCase()] : []), ...station.rt] : [];
-  const onAir = station && songFor(station);
+  const shown = onAirNow.track;
+  const isLive = !!station?.live;
+  const rt = !isLive ? station?.rt ?? [] : onAirNow.on && shown
+    ? [`NOW ${shown.title}`, shown.artist, shown.preview ? 'PLAYING HERE TOO' : 'PICTURE ONLY ON THIS ONE'].map((l) => l.toUpperCase())
+    : ['BACK SOON', ...(shown ? [`LAST ${shown.title}`.toUpperCase()] : [])];
+  const onAir = isLive ? shown && { ...shown, genre: onAirNow.on ? 'Live now' : 'Last played' } : station && songFor(station);
 
   return (
     <>
@@ -284,12 +308,12 @@ export default function Receiver() {
         <div className="screen" onPointerDown={onScreenDown} onPointerUp={onScreenUp} onPointerCancel={() => { swipeRef.current = null; }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/fm/marcus.png" alt={live ? '' : 'Marcus, seen from behind in a white shirt, in a garden of tall golden grass'} width={320} height={240} />
-          <canvas ref={screenRef} width={WIDTH} height={HEIGHT} className={live ? 'on' : ''} role="img" aria-label={station ? `Picture from ${station.name}` : 'Static between stations'} />
+          <canvas ref={screenRef} width={WIDTH} height={HEIGHT} className={live ? 'on' : ''} role="img" aria-label={isLive ? (onAirNow.on && shown ? `Album cover of ${shown.title} by ${shown.artist}` : 'Static: this station is off air') : station ? `Picture from ${station.name}` : 'Static between stations'} />
           <div className="scan" ref={scanRef} aria-hidden="true" />
         </div>
 
         <div className="rds" aria-live="polite">
-          <p className="rds-ps">{station ? station.ps : '--------'}</p>
+          <p className="rds-ps">{isLive && !onAirNow.on ? 'OFF AIR' : station ? station.ps : '--------'}</p>
           <p className="rds-rt">{station ? rt[line % rt.length] : 'NO SIGNAL'}</p>
         </div>
       </div>
@@ -303,7 +327,7 @@ export default function Receiver() {
               const label = (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={onAir.cover} alt="" width={42} height={42} />
+                  {onAir.cover && <img src={onAir.cover} alt="" width={42} height={42} />}
                   <span><b>{onAir.title}</b><span>{onAir.artist}</span><em>{onAir.genre}</em></span>
                 </>
               );
@@ -340,7 +364,7 @@ export default function Receiver() {
         <ol className="stops" ref={railRef}>
           {stations.map((s) => (
             <li key={s.id} style={{ left: `${pct(s.freq)}%` }}>
-              <button type="button" className={station?.id === s.id ? 'active' : ''} onClick={() => tune(s.freq, true)} aria-label={`Tune to ${s.name}, ${s.freq} megahertz`}>
+              <button type="button" className={[station?.id === s.id && 'active', s.live && (onAirNow.on ? 'is-live' : 'is-quiet')].filter(Boolean).join(' ')} onClick={() => tune(s.freq, true)} aria-label={`Tune to ${s.name}, ${s.freq} megahertz`}>
                 <span>{s.ps}</span>
                 <small>{s.freq.toFixed(1)}</small>
               </button>

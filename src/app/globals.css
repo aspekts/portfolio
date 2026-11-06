@@ -136,6 +136,9 @@ main:focus { outline: none; }
 .stops small { display: none; }
 .stops button { font: 700 12.5px/1 var(--text); letter-spacing: .02em; padding: 7px 2px; white-space: nowrap; }
 .stops button:hover, .stops button.active { color: var(--hot); }
+.stops .is-quiet:not(.active) span { opacity: .55; }
+.stops .is-live span::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 50%; background: var(--hot); animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
 
 /* Sections */
 
@@ -366,5 +369,5 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   html { scroll-behavior: auto; }
   .scan { display: none; }
   .crate button { transition: none; }
-  .disc.spin { animation: none; }
+  .disc.spin, .stops .is-live span::before { animation: none; }
 }

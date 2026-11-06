@@ -9,6 +9,7 @@ export interface Station {
   rt: string[]; // RDS text
   body: string;
   link?: { label: string; href: string };
+  live?: boolean;
 }
 
 const { plays, hours, artists } = music.stats;
@@ -32,6 +33,11 @@ export const stations: Station[] = [
     rt: ['7 ATM LOG SOURCES', 'ONE LIKELY CAUSE', 'TECHNICAL LEAD'],
     body: 'Technical lead on a university industry project: an ATM diagnostics prototype that cleans logs from seven sources, scores anomalies with Isolation Forest and correlates them into incidents, built on synthetic data.',
     link: { label: 'Source', href: 'https://github.com/aspekts/industrial-team-project' },
+  },
+  {
+    id: 'onair', freq: 92.5, ps: 'ON AIR', name: 'On Air', format: 'Live from my headphones', live: true,
+    rt: ['WHATEVER I AM PLAYING'],
+    body: "Whatever I'm listening to right now, live. The picture is the album cover, sent through the same signal as everything else, and when I stop, the station goes off air.",
   },
   {
     id: 'yarn', freq: 93.7, ps: 'YARN DEV', name: 'Yarn Development', format: 'Local Radio',

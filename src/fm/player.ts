@@ -99,6 +99,16 @@ export function play(next: Now, url: string) {
   emit();
 }
 
+/** The radio stays on with nothing to play, for a live song that has no clean preview. */
+export function hush(next: Now) {
+  const el = ensure();
+  ctx!.resume();
+  el.pause();
+  current = '';
+  now = next;
+  emit();
+}
+
 export function stop() {
   audio?.pause();
   now = null;

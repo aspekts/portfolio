@@ -40,6 +40,7 @@ because noise is added to the signal before it is demodulated.
 - **Receiver**: picture screen, RDS display, frequency readout.
 - **Band**: a live waterfall of 87.5 to 108 MHz, drawn from each station's real
   signal in halftone ink. It is also the dial.
+- **On Air**: a live station. Lanyard gives instant updates and stats.fm covers devices Discord cannot see. The album cover goes out through the signal, and the channel is empty static when nothing is playing.
 - **Programme guide**: the work, as a listings page. Each entry tunes the receiver.
 - **The Shelf**: the CD collection as real covers, with a disc behind the selected one. Tracks come from Apple's list for that exact album.
 - **On rotation**: this week's chart from stats.fm.
