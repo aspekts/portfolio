@@ -19,6 +19,7 @@ export function Guide() {
           <li key={s.id}>
             <button type="button" className="tune" onClick={() => window.dispatchEvent(new CustomEvent('fm:tune', { detail: s.freq }))} aria-label={`Tune to ${s.name}`}>
               {s.freq.toFixed(1)}
+              <small>Tune</small>
             </button>
             <div>
               <h3>{s.name}</h3>
@@ -179,7 +180,10 @@ export function NowBar() {
     <aside className="nowbar" aria-label="Now playing">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       {now.cover && <img src={now.cover} alt="" width={44} height={44} />}
-      <p><b>{now.title}</b><span>{now.artist}</span></p>
+      <a href="#main" aria-label={`${now.title} by ${now.artist}. Back to the dial`}>
+        <b>{now.title}</b>
+        <span>{now.artist}</span>
+      </a>
       <button type="button" onClick={stop}>Stop</button>
     </aside>
   );
@@ -195,6 +199,7 @@ export function Sign() {
         <li><a href="https://github.com/aspekts">GitHub</a></li>
         <li><a href="https://linkedin.com/in/mkamuntu">LinkedIn</a></li>
         <li><a href="https://stats.fm/buh">stats.fm</a></li>
+        <li><a href="#main">Back to the dial</a></li>
       </ul>
       <p className="colophon">
         Every picture on the dial is encoded to FM and decoded back in your browser, with noise added to the signal as you

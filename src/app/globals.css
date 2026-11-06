@@ -25,7 +25,7 @@ body {
 h1, h2, h3, p, ol, ul { margin: 0; padding: 0; }
 ol, ul { list-style: none; }
 a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 2px; }
-a:hover { color: var(--hot); }
+a:hover { text-decoration-color: var(--hot); }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; touch-action: manipulation; }
 :focus-visible { outline: 3px solid var(--hot); outline-offset: 2px; }
 
@@ -59,6 +59,11 @@ main:focus { outline: none; }
 .intro { margin-top: 12px; font-size: clamp(16px, 1.3vw, 19px); max-width: 46ch; }
 .hint { margin-top: 12px; }
 .hint b { background: var(--ink); color: var(--paper); padding: 1px 6px; }
+.for-touch { display: none; }
+@media (pointer: coarse) {
+  .for-mouse { display: none; }
+  .for-touch { display: inline; }
+}
 
 .screen-wrap { display: flex; flex-direction: column; justify-content: center; min-height: 0; container-type: size; }
 
@@ -83,6 +88,10 @@ main:focus { outline: none; }
   inset: 0;
   pointer-events: none;
   background: repeating-linear-gradient(0deg, rgb(0 0 0 / .13) 0 1px, transparent 1px 3px);
+}
+.swipe-cue { display: none; }
+@media (pointer: coarse) and (max-height: 700px) {
+  .swipe-cue { display: block; position: absolute; z-index: 1; left: 8px; bottom: 8px; padding: 3px 7px; background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 800; pointer-events: none; }
 }
 .scan { position: absolute; left: 0; right: 0; height: 3px; background: rgb(255 255 255 / .55); }
 
@@ -110,8 +119,9 @@ main:focus { outline: none; }
 .now-on { min-width: 0; }
 .song { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; align-self: center; line-height: 1.15; font-size: 14px; }
 .song img { width: 42px; height: 42px; flex: none; object-fit: cover; }
-.song em { display: block; font-style: normal; font-size: 12px; font-weight: 700; color: var(--hot); }
+.song em { display: block; font-style: normal; font-size: 12px; font-weight: 800; }
 .song b, .song span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.no-song { flex: none; width: 42px; height: 42px; background: repeating-linear-gradient(45deg, var(--ink) 0 3px, transparent 3px 8px); }
 .song a, .song-label { min-width: 0; display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .song a > span, .song-label > span { min-width: 0; }
 .now-on b { font: 400 19px var(--display); margin-right: 6px; }
@@ -135,7 +145,10 @@ main:focus { outline: none; }
 .stops li { position: absolute; top: 0; transform: translateX(-50%); }
 .stops small { display: none; }
 .stops button { font: 700 12.5px/1 var(--text); letter-spacing: .02em; padding: 7px 2px; white-space: nowrap; }
-.stops button:hover, .stops button.active { color: var(--hot); }
+.stops button.active { background: var(--ink); color: var(--paper); padding-inline: 6px; }
+.stops .is-quiet:not(.active) span { opacity: .55; }
+.stops .is-live span::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 50%; background: var(--hot); animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
 
 /* Sections */
 
@@ -152,8 +165,9 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   padding: 16px 0;
   border-bottom: 1px solid var(--ink);
 }
-.tune { font: 900 34px/1 var(--dots); text-align: left; }
-.tune:hover { color: var(--hot); }
+.tune { justify-self: start; padding: 4px 6px; border: 2px solid var(--ink); font: 900 30px/1 var(--dots); text-align: left; white-space: nowrap; }
+.tune small { display: block; margin-top: 4px; font: 800 11.5px/1 var(--text); letter-spacing: .08em; text-transform: uppercase; }
+.tune:hover { background: var(--ink); color: var(--white); }
 .guide h3 { font: 400 20px/1.15 var(--display); }
 .format { font-size: 14px; font-weight: 600; }
 .body { max-width: 68ch; }
@@ -195,7 +209,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 .rotation { background: var(--white); padding: 56px 28px; }
 .wall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px 14px; margin-top: 28px; }
 .wall a { display: block; text-decoration: none; }
-.wall img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.wall img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
 .wall li { min-width: 0; }
 .wall b { display: block; margin-top: 6px; font-size: 14px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wall span { display: block; font-size: 13px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -211,7 +225,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 .off-air { background: var(--ink); color: var(--paper); padding: 56px 28px; }
 .off-air > div { display: grid; grid-template-columns: minmax(240px, 420px) minmax(0, 1fr); gap: 30px; margin-top: 24px; align-items: center; }
 .off-air img { width: 100%; height: auto; display: block; }
-.prose { max-width: 56ch; font-size: 19px; }
+.prose { max-width: 56ch; font-size: 19px; color: var(--white); }
 .prose p + p { margin-top: .7em; }
 
 .sign { padding: 56px 28px 40px; }
@@ -236,7 +250,8 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   animation: rise .18s ease-out;
 }
 .nowbar img { width: 44px; height: 44px; flex: none; object-fit: cover; }
-.nowbar p { flex: 1; min-width: 0; line-height: 1.2; font-size: 14px; }
+.nowbar a { flex: 1; min-width: 0; min-height: 44px; display: grid; align-content: center; line-height: 1.2; font-size: 14px; text-decoration: none; }
+.nowbar a:hover { color: inherit; }
 .nowbar b, .nowbar span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .nowbar button { flex: none; min-height: 44px; padding: 0 14px; background: var(--paper); color: var(--ink); font-weight: 800; }
 @keyframes rise { from { transform: translateY(16px); opacity: 0; } }
@@ -247,19 +262,23 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 @media (max-width: 860px) {
   .masthead { gap: 8px; padding: 2px max(16px, env(safe-area-inset-right)) 2px max(16px, env(safe-area-inset-left)); }
   .logo { font-size: clamp(25px, 7.4vw, 32px); white-space: nowrap; }
-  .masthead nav { gap: clamp(2px, 1vw, 12px); font-size: clamp(12.5px, 3.5vw, 15px); }
-  .masthead nav a { display: flex; align-items: center; min-height: 44px; padding: 0 clamp(2px, .8vw, 6px); }
+  .masthead nav { gap: 0; font-size: clamp(12.5px, 3.5vw, 15px); }
+  .masthead nav a { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 clamp(2px, .8vw, 6px); }
+  /* The last link takes the page margin, so its target reaches the screen edge. */
+  .masthead nav a:last-child { justify-content: flex-start; margin-right: -16px; }
 
   .receiver { display: block; height: auto; min-height: 0; padding: 0 16px 16px; }
   .identity { max-width: none; }
   .identity h1 { font-size: clamp(25px, 7.9vw, 68px); line-height: 1; }
   .identity h1 br { display: none; }
   .role { margin-top: 5px; font-size: clamp(15px, 4.4vw, 22px); }
-  .intro, .hint { display: none; }
+  .intro { margin-top: 9px; font-size: 14.5px; line-height: 1.35; max-width: 60ch; }
+  .hint { margin-top: 9px; font-size: 13px; line-height: 1.3; }
+  .hint b { padding: 1px 5px; }
 
   /* Tall enough to fill the screen, never so tall that the dial falls off the bottom. */
   .screen-wrap { container-type: normal; margin-top: 10px; }
-  .screen, .rds { width: min(100%, calc((100svh - 372px) * 4 / 3)); min-width: min(100%, 240px); }
+  .screen, .rds { width: min(100%, calc((100svh - 504px) * 4 / 3)); min-width: min(100%, 220px); }
   .screen { border-width: 4px; }
   .rds { min-height: 50px; padding: 5px 10px; gap: 10px; }
   .rds-ps { font-size: clamp(20px, 6vw, 28px); }
@@ -272,7 +291,8 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .now-on { grid-column: 2 / -1; font-size: 13px; line-height: 1.2; }
   .now-on b { display: block; font-size: 15px; margin: 0; }
   .song { grid-column: 1 / 3; font-size: 13.5px; }
-  .song img { width: 44px; height: 44px; }
+  .song img, .no-song { width: 44px; height: 44px; }
+  .song a { align-items: center; }
   .tuner-btns { grid-column: 3; }
   .tuner-btns .seek { display: none; }
   .tuner-btns button { min-height: 44px; padding: 0 16px; font-size: 15px; background: var(--ink); color: var(--paper); }
@@ -282,6 +302,13 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 
   /* Thirteen ticks cannot be tapped, so the stations become a rail the thumb can scroll. */
   .stops { display: flex; gap: 2px; height: auto; margin: 4px -16px 0; padding: 0 16px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .stops {
+    --fade-start: 24px; --fade-end: 24px;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+  }
+  .stops.at-start { --fade-start: 0px; }
+  .stops.at-end { --fade-end: 0px; }
   .stops::-webkit-scrollbar { display: none; }
   .stops li { position: static; transform: none; flex: none; scroll-snap-align: center; }
   .stops button { display: grid; align-content: center; min-width: 74px; min-height: 48px; padding: 4px 8px; text-align: center; border-bottom: 3px solid transparent; }
@@ -293,7 +320,12 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   h2 { font-size: clamp(32px, 10vw, 54px); }
   .lede { font-size: 16.5px; }
   .guide li { grid-template-columns: 82px minmax(0, 1fr); padding: 12px 0; }
-  .tune { font-size: 25px; min-height: 44px; }
+  .tune { font-size: 21px; min-height: 44px; padding-inline: 5px; }
+  .tune small { font-size: 11px; margin-top: 3px; }
+  .big-link a { display: inline-block; padding-block: 11px; }
+  .heavy { display: block; margin-top: 20px; font-size: 16px; }
+  .heavy li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-top: 1px solid currentColor; }
+  .heavy small { font-size: 14px; font-variant-numeric: tabular-nums; }
   .body { grid-column: 1 / -1; }
 
   /* The disc stays on screen while the row of covers scrolls underneath it. */
@@ -309,24 +341,46 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .crate button.open { box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--ink); }
   .blank { font-size: 13px; }
 
-  .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 10px; }
+  .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 10px; }
+  .wall b, .wall span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; }
+  .wall b { -webkit-line-clamp: 3; }
   .dialist { grid-template-columns: minmax(0, 1fr); }
   .off-air > div { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .prose { font-size: 17px; }
   .sign ul a { display: inline-flex; align-items: center; min-height: 44px; }
   .sign { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+  /* The fixed now-playing bar must not sit on the last line of the page. */
+  body:has(.nowbar) .sign { padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
 }
 
-/* The shortest phones: give up picture height so the rail stays on the first screen. */
-@media (max-width: 860px) and (max-height: 620px) and (orientation: portrait) {
-  .screen, .rds { width: min(100%, calc((100svh - 412px) * 4 / 3)); min-width: 190px; }
+/* The shortest phones: the hint goes first, then picture height, so the rail stays on screen. */
+@media (max-width: 860px) and (max-height: 700px) and (orientation: portrait) {
+  .hint { display: none; }
+  .screen, .rds { width: min(100%, calc((100svh - 455px) * 4 / 3)); min-width: 160px; }
   .rds { min-height: 40px; }
   .band { height: 56px; }
+}
+
+/* Below this there is no room for both: the picture is the point, so the intro waits. */
+@media (max-width: 860px) and (max-height: 620px) and (orientation: portrait) {
+  .intro { display: none; }
+  .screen, .rds { width: min(100%, calc((100svh - 378px) * 4 / 3)); }
+}
+
+@media (max-width: 360px) {
+  .masthead nav a { min-width: 40px; }
+  .stops button { min-width: 68px; }
+  .song img, .no-song { width: 36px; height: 36px; }
+  .nowbar img { width: 36px; height: 36px; }
+  .nowbar button { padding: 0 10px; }
+  .tuner-btns button { padding: 0 10px; font-size: 13.5px; }
 }
 
 @media (min-width: 561px) and (max-width: 860px) and (min-height: 700px) {
   .stops button { min-width: 90px; }
   .band { height: 96px; }
+  /* A taller band and rail than a phone, so the picture leaves them more room. */
+  .screen, .rds { width: min(100%, calc((100svh - 544px) * 4 / 3)); }
   .wall { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .dialist { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -347,6 +401,8 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .identity { grid-column: 2; grid-row: 1; align-self: start; }
   .identity h1 { font-size: 22px; }
   .role { font-size: 13px; margin-top: 2px; }
+  .hint { display: none; }
+  .intro { font-size: 12.5px; margin-top: 2px; line-height: 1.25; }
   .screen-wrap { grid-column: 1; grid-row: 1 / 3; margin: 0; }
   .screen, .rds { width: calc((100svh - 96px) * 4 / 3); min-width: 0; }
   .screen { border-width: 3px; }
@@ -356,7 +412,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .tuner { grid-column: 2; grid-row: 2; margin: 0; min-width: 0; }
   .tuner-head { gap: 2px 8px; margin-bottom: 3px; }
   .readout { font-size: 24px; }
-  .band { height: 46px; }
+  .band { height: 58px; }
   .stops { margin: 2px 0 0; padding: 0; }
   .stops button { min-width: 62px; min-height: 40px; }
   .stops small { font-size: 13px; }
@@ -366,5 +422,5 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   html { scroll-behavior: auto; }
   .scan { display: none; }
   .crate button { transition: none; }
-  .disc.spin { animation: none; }
+  .disc.spin, .stops .is-live span::before { animation: none; }
 }
