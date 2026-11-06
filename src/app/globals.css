@@ -89,6 +89,10 @@ main:focus { outline: none; }
   pointer-events: none;
   background: repeating-linear-gradient(0deg, rgb(0 0 0 / .13) 0 1px, transparent 1px 3px);
 }
+.swipe-cue { display: none; }
+@media (pointer: coarse) and (max-height: 700px) {
+  .swipe-cue { display: block; position: absolute; z-index: 1; left: 8px; bottom: 8px; padding: 3px 7px; background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 800; pointer-events: none; }
+}
 .scan { position: absolute; left: 0; right: 0; height: 3px; background: rgb(255 255 255 / .55); }
 
 .rds {
@@ -117,6 +121,7 @@ main:focus { outline: none; }
 .song img { width: 42px; height: 42px; flex: none; object-fit: cover; }
 .song em { display: block; font-style: normal; font-size: 12px; font-weight: 800; }
 .song b, .song span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.no-song { flex: none; width: 42px; height: 42px; background: repeating-linear-gradient(45deg, var(--ink) 0 3px, transparent 3px 8px); }
 .song a, .song-label { min-width: 0; display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .song a > span, .song-label > span { min-width: 0; }
 .now-on b { font: 400 19px var(--display); margin-right: 6px; }
@@ -204,7 +209,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 .rotation { background: var(--white); padding: 56px 28px; }
 .wall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px 14px; margin-top: 28px; }
 .wall a { display: block; text-decoration: none; }
-.wall img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.wall img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
 .wall li { min-width: 0; }
 .wall b { display: block; margin-top: 6px; font-size: 14px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wall span { display: block; font-size: 13px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -273,7 +278,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 
   /* Tall enough to fill the screen, never so tall that the dial falls off the bottom. */
   .screen-wrap { container-type: normal; margin-top: 10px; }
-  .screen, .rds { width: min(100%, 560px, calc((100svh - 504px) * 4 / 3)); min-width: min(100%, 220px); }
+  .screen, .rds { width: min(100%, calc((100svh - 504px) * 4 / 3)); min-width: min(100%, 220px); }
   .screen { border-width: 4px; }
   .rds { min-height: 50px; padding: 5px 10px; gap: 10px; }
   .rds-ps { font-size: clamp(20px, 6vw, 28px); }
@@ -286,7 +291,7 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .now-on { grid-column: 2 / -1; font-size: 13px; line-height: 1.2; }
   .now-on b { display: block; font-size: 15px; margin: 0; }
   .song { grid-column: 1 / 3; font-size: 13.5px; }
-  .song img { width: 44px; height: 44px; }
+  .song img, .no-song { width: 44px; height: 44px; }
   .song a { align-items: center; }
   .tuner-btns { grid-column: 3; }
   .tuner-btns .seek { display: none; }
@@ -337,12 +342,15 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
   .blank { font-size: 13px; }
 
   .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 10px; }
-  .wall b { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; }
+  .wall b, .wall span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; }
+  .wall b { -webkit-line-clamp: 3; }
   .dialist { grid-template-columns: minmax(0, 1fr); }
   .off-air > div { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .prose { font-size: 17px; }
   .sign ul a { display: inline-flex; align-items: center; min-height: 44px; }
   .sign { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+  /* The fixed now-playing bar must not sit on the last line of the page. */
+  body:has(.nowbar) .sign { padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
 }
 
 /* The shortest phones: the hint goes first, then picture height, so the rail stays on screen. */
@@ -361,7 +369,8 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 
 @media (max-width: 360px) {
   .masthead nav a { min-width: 40px; }
-  .song img { width: 36px; height: 36px; }
+  .stops button { min-width: 68px; }
+  .song img, .no-song { width: 36px; height: 36px; }
   .nowbar img { width: 36px; height: 36px; }
   .nowbar button { padding: 0 10px; }
   .tuner-btns button { padding: 0 10px; font-size: 13.5px; }
@@ -370,6 +379,8 @@ h2 { font: 400 clamp(38px, 5vw, 68px)/1 var(--display); }
 @media (min-width: 561px) and (max-width: 860px) and (min-height: 700px) {
   .stops button { min-width: 90px; }
   .band { height: 96px; }
+  /* A taller band and rail than a phone, so the picture leaves them more room. */
+  .screen, .rds { width: min(100%, calc((100svh - 544px) * 4 / 3)); }
   .wall { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .dialist { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

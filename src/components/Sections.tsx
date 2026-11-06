@@ -199,6 +199,7 @@ export function Sign() {
         <li><a href="https://github.com/aspekts">GitHub</a></li>
         <li><a href="https://linkedin.com/in/mkamuntu">LinkedIn</a></li>
         <li><a href="https://stats.fm/buh">stats.fm</a></li>
+        <li><a href="#main">Back to the dial</a></li>
       </ul>
       <p className="colophon">
         Every picture on the dial is encoded to FM and decoded back in your browser, with noise added to the signal as you

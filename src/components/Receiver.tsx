@@ -57,10 +57,12 @@ export default function Receiver() {
   liveRef.current = onAirNow;
   const workerRef = useRef<Worker | null>(null);
   const railRef = useRef<HTMLOListElement>(null);
+  const [cue, setCue] = useState(true);
   const touchRef = useRef<{ x: number; f: number; moved: boolean } | null>(null);
   const swipeRef = useRef<{ x: number; y: number } | null>(null);
 
   const tune = useCallback((f: number, smooth = false) => {
+    setCue(false);
     const v = Math.min(BAND.high, Math.max(BAND.low, f));
     if (smooth) { targetRef.current = v; return; }
     targetRef.current = null;
@@ -250,7 +252,10 @@ export default function Receiver() {
 
   const toggleListen = () => {
     if (listening) { stop(); return; }
-    tuneIn(nearest(freqRef.current), liveRef.current);
+    // You hear what you're tuned to, so Listen between stations settles on the nearest one.
+    const near = nearest(targetRef.current ?? freqRef.current);
+    tune(near.freq, true);
+    tuneIn(near, liveRef.current);
     preload(stations.map((x) => songFor(x)?.preview).filter(Boolean) as string[]);
   };
 
@@ -345,6 +350,7 @@ export default function Receiver() {
           <img src="/fm/marcus.png" alt={live ? '' : 'Marcus, seen from behind in a white shirt, in a garden of tall golden grass'} width={320} height={240} />
           <canvas ref={screenRef} width={WIDTH} height={HEIGHT} className={live ? 'on' : ''} role="img" aria-label={isLive ? (onAirNow.on && shown ? `Album cover of ${shown.title} by ${shown.artist}` : 'Static: this station is off air') : station ? `Picture from ${station.name}` : 'Static between stations'} />
           <div className="scan" ref={scanRef} aria-hidden="true" />
+          {cue && <p className="swipe-cue" aria-hidden="true">Swipe to tune</p>}
         </div>
 
         <div className="rds" aria-live="polite">
@@ -358,7 +364,13 @@ export default function Receiver() {
           <p className="readout"><span ref={readoutRef}>{START.toFixed(1)}</span> <small>MHz</small></p>
           <p className="now-on">{station ? <><b>{station.name}</b> {station.format}</> : 'Between stations'}</p>
           <div className="song">
-            {onAir && (() => {
+            {!station && (
+              <div className="song-label">
+                <i className="no-song" aria-hidden="true" />
+                <span><b>Nothing on this frequency</b><span>Keep tuning</span></span>
+              </div>
+            )}
+            {station && onAir && (() => {
               const label = (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
