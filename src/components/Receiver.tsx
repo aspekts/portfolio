@@ -58,7 +58,7 @@ export default function Receiver() {
   const workerRef = useRef<Worker | null>(null);
   const railRef = useRef<HTMLOListElement>(null);
   const touchRef = useRef<{ x: number; f: number; moved: boolean } | null>(null);
-  const swipeRef = useRef<number | null>(null);
+  const swipeRef = useRef<{ x: number; y: number } | null>(null);
 
   const tune = useCallback((f: number, smooth = false) => {
     const v = Math.min(BAND.high, Math.max(BAND.low, f));
@@ -284,12 +284,13 @@ export default function Receiver() {
     if (Math.abs(s.freq - f) < SNAP) tune(s.freq, true);
   };
 
-  const onScreenDown = (e: React.PointerEvent) => { swipeRef.current = e.clientX; };
+  const onScreenDown = (e: React.PointerEvent) => { swipeRef.current = { x: e.clientX, y: e.clientY }; };
   const onScreenUp = (e: React.PointerEvent) => {
     if (swipeRef.current === null) return;
-    const dx = e.clientX - swipeRef.current;
+    const dx = e.clientX - swipeRef.current.x, dy = e.clientY - swipeRef.current.y;
     swipeRef.current = null;
-    if (Math.abs(dx) > SWIPE) seek(dx < 0 ? 1 : -1);
+    // A thumb on its way down the page drifts sideways; only a clearly sideways swipe tunes.
+    if (Math.abs(dx) > SWIPE && Math.abs(dx) > Math.abs(dy) * 1.6) seek(dx < 0 ? 1 : -1);
   };
 
   const seek = (dir: number) => {

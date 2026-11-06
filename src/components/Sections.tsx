@@ -179,7 +179,10 @@ export function NowBar() {
     <aside className="nowbar" aria-label="Now playing">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       {now.cover && <img src={now.cover} alt="" width={44} height={44} />}
-      <p><b>{now.title}</b><span>{now.artist}</span></p>
+      <a href="#main" aria-label={`${now.title} by ${now.artist}. Back to the dial`}>
+        <b>{now.title}</b>
+        <span>{now.artist}</span>
+      </a>
       <button type="button" onClick={stop}>Stop</button>
     </aside>
   );

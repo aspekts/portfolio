@@ -25,7 +25,10 @@ export default function Home() {
               Right now I&apos;m building Sendix, which helps SEND teams turn vague support plans into specific ones.
               Everything else about me is on this dial.
             </p>
-            <p className="hint"><b>Drag the dial below.</b> Press Listen: every station plays a different side of my music.</p>
+            <p className="hint">
+              <b className="for-mouse">Drag the dial below.</b>
+              <b className="for-touch">Swipe the picture to tune.</b> Press Listen: every station plays a different side of my music.
+            </p>
           </div>
           <Receiver />
         </section>
